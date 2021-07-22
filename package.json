@@ -1,0 +1,38 @@
+{
+  "name": "mirae-dental",
+  "version": "1.0.0",
+  "description": "Website for Mirae Dental Clinic.",
+  "main": "src/index.js",
+  "scripts": {
+    "dev:server": "nodemon",
+    "dev:assets": "webpack --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jungminyoo/mirae-dental.git"
+  },
+  "author": "Jungmin Yoo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jungminyoo/mirae-dental/issues"
+  },
+  "homepage": "https://github.com/jungminyoo/mirae-dental#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/node": "^7.14.7",
+    "@babel/preset-env": "^7.14.8",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^6.2.0",
+    "mini-css-extract-plugin": "^2.1.0",
+    "nodemon": "^2.0.12",
+    "sass": "^1.35.2",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.2.1",
+    "webpack": "^5.46.0",
+    "webpack-cli": "^4.7.2"
+  }
+}
