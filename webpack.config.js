@@ -11,7 +11,7 @@ module.exports = {
       filename: "css/styles.css", //filename of css output
     }),
   ],
-  mode: "development", //for development -> can changed
+  mode: "development", //for development -> can changed into production
   watch: true,
   output: {
     filename: "js/[name].js",

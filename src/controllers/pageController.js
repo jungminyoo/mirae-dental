@@ -1,5 +1,5 @@
 export const home = (req, res) => {
-  return res.send("<h1>Home</h1>");
+  return res.render("pages/home", { pageTitle: "홈" });
 };
 
 export const intro = (req, res) => {
