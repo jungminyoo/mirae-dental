@@ -1,5 +1,6 @@
 import express from "express";
 import "dotenv/config";
+import morgan from "morgan";
 import rootRouter from "./routers/rootRouter";
 import introRouter from "./routers/introRouter";
 import treatRouter from "./routers/treatRouter";

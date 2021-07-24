@@ -6,7 +6,6 @@
 - /intro
   - /director
   - /guide
-  - /map
 - /treatment
   - /prosthetic
   - /implant
@@ -14,11 +13,13 @@
   - /endodontic
   - /others
 - /notice
-  - /upload
+  - /upload - post
   - /:id
-  - /:id/edit
+  - /:id/edit - post
+  - /:id/delete
   - /cases
   - /caution
 - /admin
-  - /register
-  - /login
+  - /register - post
+  - /login - post
+  - /edit - post
