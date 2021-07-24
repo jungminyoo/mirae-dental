@@ -30,6 +30,10 @@ export const endodontic = (req, res) => {
   return res.send("<h1>Endodontic</h1>");
 };
 
-export const others = (req, res) => {
-  return res.send("<h1>Others</h1>");
+export const periodental = (req, res) => {
+  return res.send("<h1>Periodental</h1>");
+};
+
+export const cervical = (req, res) => {
+  return res.send("<h1>Cervical</h1>");
 };

@@ -11,7 +11,8 @@
   - /implant
   - /dentures
   - /endodontic
-  - /others
+  - /periodental
+  - /cervical
 - /notice
   - /upload - post
   - /:id

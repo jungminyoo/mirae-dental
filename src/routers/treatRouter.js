@@ -1,9 +1,10 @@
 import express from "express";
 import {
+  cervical,
   dentures,
   endodontic,
   implant,
-  others,
+  periodental,
   prosthetic,
 } from "../controllers/pageController";
 
@@ -13,6 +14,7 @@ treatRouter.get("/prosthetic", prosthetic);
 treatRouter.get("/implant", implant);
 treatRouter.get("/dentures", dentures);
 treatRouter.get("/endodontic", endodontic);
-treatRouter.get("/others", others);
+treatRouter.get("/periodental", periodental);
+treatRouter.get("/cervical", cervical);
 
 export default treatRouter;
