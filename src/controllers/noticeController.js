@@ -1,17 +1,17 @@
 export const notice = (req, res) => {
-  return res.send("<h1>Notice</h1>");
+  return res.render("pages/notice", { pageTitle: "공지사항" });
 };
 
 export const cases = (req, res) => {
-  return res.send("<h1>Cases</h1>");
+  return res.render("pages/cases", { pageTitle: "치료 전후 사례" });
 };
 
 export const caution = (req, res) => {
-  return res.send("<h1>Caution</h1>");
+  return res.render("pages/caution", { pageTitle: "치료 후 주의사항" });
 };
 
 export const posting = (req, res) => {
-  return res.send("<h1>Posting</h1>");
+  return res.render("pages/posting", { pageTitle: "게시글 제목 넣기" });
 };
 
 export const deletePosting = (req, res) => {
@@ -19,7 +19,7 @@ export const deletePosting = (req, res) => {
 };
 
 export const getUploadPosting = (req, res) => {
-  return res.send("<h1>Upload</h1>");
+  return res.render("pages/upload", { pageTitle: "게시글 작성" });
 };
 
 export const postUploadPosting = (req, res) => {
@@ -27,7 +27,7 @@ export const postUploadPosting = (req, res) => {
 };
 
 export const getEditPosting = (req, res) => {
-  return res.send("<h1>Upload</h1>");
+  return res.render("pages/edit", { pageTitle: "게시글 수정" });
 };
 
 export const postEditPosting = (req, res) => {

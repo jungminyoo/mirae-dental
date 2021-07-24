@@ -3,37 +3,37 @@ export const home = (req, res) => {
 };
 
 export const intro = (req, res) => {
-  return res.send("<h1>Intro</h1>");
+  return res.render("pages/intro", { pageTitle: "병원소개" });
 };
 
 export const director = (req, res) => {
-  return res.send("<h1>Director</h1>");
+  return res.render("pages/director", { pageTitle: "원장소개" });
 };
 
 export const guide = (req, res) => {
-  return res.send("<h1>Guide</h1>");
+  return res.render("pages/guide", { pageTitle: "진료안내" });
 };
 
 export const prosthetic = (req, res) => {
-  return res.send("<h1>Prosthetic</h1>");
+  return res.render("pages/prosthetic", { pageTitle: "심미보철" });
 };
 
 export const implant = (req, res) => {
-  return res.send("<h1>Implant</h1>");
+  return res.render("pages/implant", { pageTitle: "임플란트" });
 };
 
 export const dentures = (req, res) => {
-  return res.send("<h1>Dentures</h1>");
+  return res.render("pages/dentures", { pageTitle: "틀니" });
 };
 
 export const endodontic = (req, res) => {
-  return res.send("<h1>Endodontic</h1>");
+  return res.render("pages/endodontic", { pageTitle: "신경치료" });
 };
 
 export const periodental = (req, res) => {
-  return res.send("<h1>Periodental</h1>");
+  return res.render("pages/periodental", { pageTitle: "치주치료" });
 };
 
 export const cervical = (req, res) => {
-  return res.send("<h1>Cervical</h1>");
+  return res.render("pages/cervical", { pageTitle: "치경부마모" });
 };

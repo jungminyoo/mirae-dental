@@ -1,5 +1,5 @@
 export const getRegister = (req, res) => {
-  return res.send("<h1>Register</h1>");
+  return res.render("pages/register", { pageTitle: "관리자 회원가입" });
 };
 
 export const postRegister = (req, res) => {
@@ -7,7 +7,7 @@ export const postRegister = (req, res) => {
 };
 
 export const getLogin = (req, res) => {
-  return res.send("<h1>Login</h1>");
+  return res.render("pages/login", { pageTitle: "관리자 로그인" });
 };
 
 export const postLogin = (req, res) => {
@@ -15,7 +15,7 @@ export const postLogin = (req, res) => {
 };
 
 export const getEditAdmin = (req, res) => {
-  return res.send("<h1>Edit Admin</h1>");
+  return res.render("pages/editProfile", { pageTitle: "관리자 회원정보 수정" });
 };
 
 export const postEditAdmin = (req, res) => {
