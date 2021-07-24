@@ -2,23 +2,23 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: 1.4vw 16vw;
+  padding: 15px 16vw;
   color: $font;
   box-shadow: 0px 3px 10px rgba($color: #000000, $alpha: 0.3);
   position: fixed;
   top: 0px;
-  z-index: 1;
+  z-index: 2;
   .header__title {
     display: flex;
     align-items: center;
     text-decoration: none;
     color: $font;
     i {
-      font-size: 1.8vw;
+      font-size: 25px;
       margin-right: 0.5vw;
     }
     h1 {
-      font-size: 1.3vw;
+      font-size: 18px;
       font-weight: 900;
       width: max-content;
     }
@@ -30,14 +30,58 @@
     align-content: center;
     justify-items: center;
     align-items: center;
-    gap: 2.3vw;
+    gap: 1.5vw;
     grid-template-columns: repeat(8, max-content);
-    li {
+    .header__content {
       font-weight: 700;
-      font-size: 1vw;
+      font-size: 14px;
+      position: relative;
       a {
         text-decoration: none;
         color: $font;
+      }
+      & a:hover {
+        color: $blue;
+        border-bottom: 2px solid;
+        transition: color 0.2s ease-in-out;
+      }
+      &:first-child a:hover {
+        color: $red;
+      }
+      &:last-child a:hover {
+        color: $green;
+      }
+      .hidden {
+        visibility: hidden;
+      }
+      .header__subcontents {
+        position: absolute;
+        background-color: rgba($color: $bg, $alpha: 0.8);
+        box-shadow: 0px 15px 20px rgba($color: #000000, $alpha: 0.1);
+        height: max-content;
+        width: 80px;
+        padding: 15px 0px;
+        left: 50%;
+        margin-left: -40px;
+        top: 17px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        li {
+          margin-bottom: 10px;
+          a {
+            font-size: 13px;
+            font-weight: 500;
+            text-align: center;
+            &:hover {
+              border-bottom: none;
+              color: rgba($color: $font, $alpha: 0.5);
+            }
+          }
+        }
+        li:last-child {
+          margin-bottom: 0;
+        }
       }
     }
   }
@@ -47,7 +91,7 @@
     align-items: flex-end;
     span {
       width: max-content;
-      font-size: 0.9vw;
+      font-size: 12px;
       font-weight: 700;
       &:first-child {
         margin-bottom: 3px;
