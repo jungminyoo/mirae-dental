@@ -1,6 +1,9 @@
 import express from "express";
 import "dotenv/config";
 import morgan from "morgan";
+import session from "express-session";
+import MongoStore from "connect-mongo";
+import "./db";
 import rootRouter from "./routers/rootRouter";
 import introRouter from "./routers/introRouter";
 import treatRouter from "./routers/treatRouter";
@@ -14,6 +17,15 @@ const logger = morgan("dev");
 app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
 app.use(logger);
+
+app.use(
+  session({
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
+  })
+);
 
 app.use("/assets", express.static("assets"));
 app.use("/", rootRouter);

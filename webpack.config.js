@@ -5,6 +5,7 @@ module.exports = {
   entry: {
     main: "./src/client/js/main.js",
     header: "./src/client/js/header.js",
+    editor: "./src/client/js/editor.js",
     //add more entry points here, name should be same as file name
   },
   plugins: [

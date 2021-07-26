@@ -23,6 +23,7 @@ export const getUploadPosting = (req, res) => {
 };
 
 export const postUploadPosting = (req, res) => {
+  console.log(req.body);
   return res.end();
 };
 

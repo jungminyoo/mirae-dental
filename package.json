@@ -18,7 +18,12 @@
   },
   "homepage": "https://github.com/jungminyoo/mirae-dental#readme",
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^29.0.0",
+    "bcrypt": "^5.0.1",
+    "connect-mongo": "^4.4.1",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "mongoose": "^5.13.3",
     "pug": "^3.0.2"
   },
   "devDependencies": {
@@ -31,6 +36,7 @@
     "mini-css-extract-plugin": "^2.1.0",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.12",
+    "regenerator-runtime": "^0.13.9",
     "sass": "^1.35.2",
     "sass-loader": "^12.1.0",
     "style-loader": "^3.2.1",
