@@ -1,9 +1,8 @@
 extends ../base
 
 block content 
-    form(method="POST")
-        textarea#editor(name="editor") 
-        input#submit(type="submit")
+    #editor(name="editor") 
+    input#submit(type="submit")
 
 block scripts 
     script(src="/assets/js/editor.js")

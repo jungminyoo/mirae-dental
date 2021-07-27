@@ -1,4 +1,4 @@
-import regeneratorRuntime from "regenerator-runtime";
+import regeneratorRuntime, { async } from "regenerator-runtime";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 let editor;
@@ -15,7 +15,15 @@ const submit = document.getElementById("submit");
 
 const handleUpload = async (event) => {
   const uploadData = editor.getData();
-  alert(uploadData);
+  console.log(JSON.stringify({ content: uploadData }));
+  const res = await fetch("/notice/upload", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ content: uploadData }),
+  });
+  console.log(res);
 };
 
 submit.addEventListener("click", handleUpload);
