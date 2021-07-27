@@ -1,8 +1,11 @@
 extends ../base
 
 block content 
-    #editor(name="editor") 
-    input#submit(type="submit")
+    form(action="/")
+        label(for="title") 제목
+        input#title(name="title", type="text", required, placeholder="제목을 작성하세요.")
+        #editor(name="editor") 
+        input#submit(type="submit")
 
 block scripts 
     script(src="/assets/js/editor.js")

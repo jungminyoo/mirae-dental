@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const postingSchema = new mongoose.Schema({
   title: { type: String, required: true, trim: true },
   content: { type: String, required: true },
-  createdAt: Date,
+  createdAt: { type: Date, required: true },
   whichBoard: { type: String, required: true },
   meta: {
     views: { type: Number, default: 0, required: true },
