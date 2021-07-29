@@ -23,8 +23,18 @@ export const caution = async (req, res) => {
   });
 };
 
-export const posting = (req, res) => {
-  return res.render("pages/posting", { pageTitle: "게시글 제목 넣기" });
+export const posting = async (req, res) => {
+  const { id } = req.params;
+  const posting = await Posting.findById(id).populate("author");
+  if (!posting) {
+    return res.status(400).render("pages/404", {
+      pageTitle: "게시물을 찾을 수 없습니다",
+    });
+  }
+  return res.render("pages/posting", {
+    pageTitle: posting.title,
+    posting,
+  });
 };
 
 export const deletePosting = (req, res) => {

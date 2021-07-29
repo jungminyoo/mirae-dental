@@ -1,3 +1,11 @@
 extends ../base
 
-block content 
+block content
+    h1=posting.title
+    small=posting.createdAt
+    small=posting.lastEdit
+    small=posting.author.name
+    div#content(data-content=posting.content)
+
+block scripts
+    script(src="/assets/js/posting.js")
