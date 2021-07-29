@@ -1,3 +1,6 @@
+import User from "../models/User";
+import Posting from "../models/Posting";
+
 export const notice = (req, res) => {
   return res.render("pages/notice", { pageTitle: "공지사항" });
 };
@@ -28,23 +31,27 @@ export const postUploadPosting = async (req, res) => {
     user: { _id },
   } = req.session;
   try {
-    const newPosting = await posting.create({
+    const newPosting = await Posting.create({
       title,
       content,
       createdAt: Date.now(),
+      lastEdit: Date.now(),
       whichBoard,
       meta: {
         views: 0,
       },
       author: _id,
     });
+    const user = await User.findById(_id);
+    user.postings.push(newPosting._id);
+    await user.save();
+    return res.redirect("/notice");
   } catch (error) {
     return res.status(400).render("pages/upload", {
       pageTitle: "게시글 작성",
       errorMessage: error._message,
     });
   }
-  return res.redirect("/notice");
 };
 
 export const getEditPosting = (req, res) => {
