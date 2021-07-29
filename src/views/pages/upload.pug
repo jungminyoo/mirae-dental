@@ -1,9 +1,15 @@
 extends ../base
 
 block content 
-    form(action="/")
+    form(action="/notice")
         label(for="title") 제목
         input#title(name="title", type="text", required, placeholder="제목을 작성하세요.")
+        label(for="whichBoard") 게시판 선택
+        input#whichBoard(list="whichBoardList", name="whichBoard")
+        datalist#whichBoardList
+            option(value="공지사항")
+            option(value="치료 전후 사례")
+            option(value="치료 후 주의사항")
         #editor(name="editor") 
         input#submit(type="submit")
 

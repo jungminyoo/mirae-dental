@@ -22,9 +22,29 @@ export const getUploadPosting = (req, res) => {
   return res.render("pages/upload", { pageTitle: "게시글 작성" });
 };
 
-export const postUploadPosting = (req, res) => {
-  console.log(req.body);
-  return res.redirect("/notice/upload");
+export const postUploadPosting = async (req, res) => {
+  const { title, whichBoard, content } = req.body;
+  const {
+    user: { _id },
+  } = req.session;
+  try {
+    const newPosting = await posting.create({
+      title,
+      content,
+      createdAt: Date.now(),
+      whichBoard,
+      meta: {
+        views: 0,
+      },
+      author: _id,
+    });
+  } catch (error) {
+    return res.status(400).render("pages/upload", {
+      pageTitle: "게시글 작성",
+      errorMessage: error._message,
+    });
+  }
+  return res.redirect("/notice");
 };
 
 export const getEditPosting = (req, res) => {
