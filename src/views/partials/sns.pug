@@ -2,3 +2,7 @@ ul.sns
     li
         a(href="https://www.instagram.com/", target="_blank")
             i.fab.fa-instagram
+        if loggedIn
+            li
+                a(href="/admin/edit") 
+                    i.far.fa-user

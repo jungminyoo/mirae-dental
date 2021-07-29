@@ -9,6 +9,7 @@ import introRouter from "./routers/introRouter";
 import treatRouter from "./routers/treatRouter";
 import adminRouter from "./routers/adminRouter";
 import noticeRouter from "./routers/noticeRouter";
+import { localsMiddleware } from "./middlewares";
 
 const app = express();
 const PORT = 4000;
@@ -29,6 +30,7 @@ app.use(
   })
 );
 
+app.use(localsMiddleware);
 app.use("/assets", express.static("assets"));
 app.use("/", rootRouter);
 app.use("/intro", introRouter);
