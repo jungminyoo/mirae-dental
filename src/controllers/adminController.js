@@ -76,3 +76,8 @@ export const getEditAdmin = (req, res) => {
 export const postEditAdmin = (req, res) => {
   return res.end();
 };
+
+export const logout = (req, res) => {
+  req.session.destroy();
+  return res.redirect("/");
+};
