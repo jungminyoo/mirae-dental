@@ -1,16 +1,26 @@
 import User from "../models/User";
 import Posting from "../models/Posting";
+import { async } from "regenerator-runtime";
 
-export const notice = (req, res) => {
-  return res.render("pages/notice", { pageTitle: "공지사항" });
+export const notice = async (req, res) => {
+  const postings = await Posting.find({ whichBoard: "공지사항" });
+  return res.render("pages/postings", { pageTitle: "공지사항", postings });
 };
 
-export const cases = (req, res) => {
-  return res.render("pages/cases", { pageTitle: "치료 전후 사례" });
+export const cases = async (req, res) => {
+  const postings = await Posting.find({ whichBoard: "치료 전후 사례" });
+  return res.render("pages/postings", {
+    pageTitle: "치료 전후 사례",
+    postings,
+  });
 };
 
-export const caution = (req, res) => {
-  return res.render("pages/caution", { pageTitle: "치료 후 주의사항" });
+export const caution = async (req, res) => {
+  const postings = await Posting.find({ whichBoard: "치료 후 주의사항" });
+  return res.render("pages/postings", {
+    pageTitle: "치료 후 주의사항",
+    postings,
+  });
 };
 
 export const posting = (req, res) => {

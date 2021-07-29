@@ -1,0 +1,10 @@
+extends ../base
+include ../mixins/posting
+
+block content 
+    if postings
+        ul
+            each posting in postings
+                +posting(posting)
+            else 
+                li 게시물이 없습니다.
