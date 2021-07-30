@@ -84,16 +84,10 @@ export const getUploadPosting = (req, res) => {
 };
 
 export const postUploadPosting = async (req, res) => {
-  const { title, whichBoard, content } = req.body;
-  let { isImportant } = req.body;
+  const { title, whichBoard, content, isImportant } = req.body;
   const {
     user: { _id },
   } = req.session;
-  if (isImportant === "on") {
-    isImportant = true;
-  } else {
-    isImportant = false;
-  }
   try {
     const newPosting = await Posting.create({
       title,
@@ -119,10 +113,45 @@ export const postUploadPosting = async (req, res) => {
   }
 };
 
-export const getEditPosting = (req, res) => {
-  return res.render("pages/editPosting", { pageTitle: "게시글 수정" });
+export const getEditPosting = async (req, res) => {
+  const { id } = req.params;
+  const {
+    user: { _id },
+  } = req.session;
+  const posting = await Posting.findById(id);
+  const isImportant = posting.isImportant === "true";
+  const isNotice = posting.whichBoard === "공지사항" ? true : false;
+  const isCase = posting.whichBoard === "치료 전후 사례" ? true : false;
+  const isCaution = posting.whichBoard === "치료 후 주의사항" ? true : false;
+  console.log(typeof isImportant, isImportant);
+  if (String(posting.author) !== String(_id)) {
+    return res.status(403).redirect(`/notice/${id}`);
+  }
+  return res.render("pages/editPosting", {
+    pageTitle: "게시글 수정",
+    posting,
+    isImportant,
+    isNotice,
+    isCase,
+    isCaution,
+  });
 };
 
-export const postEditPosting = (req, res) => {
-  return res.end();
+export const postEditPosting = async (req, res) => {
+  const { id } = req.params;
+  const {
+    user: { _id },
+  } = req.session;
+  const { title, whichBoard, content, isImportant } = req.body;
+  const postingEdited = await Posting.findByIdAndUpdate(id, {
+    title,
+    whichBoard,
+    content,
+    isImportant: isImportant,
+    lastEdit: Date.now(),
+  });
+  if (String(postingEdited.author) !== String(_id)) {
+    return res.status(403).redirect(`/notice/${id}`);
+  }
+  return res.redirect(`/notice/${id}`);
 };

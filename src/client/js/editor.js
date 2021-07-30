@@ -12,6 +12,11 @@ ClassicEditor.create(document.querySelector("#editor"), {
 })
   .then((newEditor) => {
     editor = newEditor;
+    const contentContainer = document.getElementById("editor");
+    const { content } = contentContainer.dataset;
+    if (content) {
+      editor.setData(content);
+    }
   })
   .catch((error) => {
     console.error(error);
@@ -26,8 +31,11 @@ const handleUpload = async (event) => {
   const uploadData = editor.getData();
   const title = titleInput.value;
   const whichBoard = whichBoardInput.value;
-  const isImportant = isImportantInput.value;
-  await fetch("/notice/upload", {
+  const isImportant = isImportantInput.checked;
+  const { id } = submit.dataset;
+  const fetchingURL = id ? `/notice/${id}/edit` : "/notice/upload";
+
+  await fetch(fetchingURL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
