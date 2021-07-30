@@ -1,7 +1,12 @@
 extends ../base
 include ../mixins/postingMixin
+include ../mixins/importantPostingMixin
 
 block content 
+    if importantPostings
+        ul
+            each importantPosting in importantPostings
+                +importantPosting(importantPosting)
     if postings
         ul
             each posting in postings

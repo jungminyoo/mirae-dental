@@ -20,17 +20,24 @@ ClassicEditor.create(document.querySelector("#editor"), {
 const submit = document.getElementById("submit");
 const titleInput = document.getElementById("title");
 const whichBoardInput = document.getElementById("whichBoard");
+const isImportantInput = document.getElementById("isImportant");
 
 const handleUpload = async (event) => {
   const uploadData = editor.getData();
   const title = titleInput.value;
   const whichBoard = whichBoardInput.value;
-  const res = await fetch("/notice/upload", {
+  const isImportant = isImportantInput.value;
+  await fetch("/notice/upload", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ title, whichBoard, content: uploadData }),
+    body: JSON.stringify({
+      title,
+      whichBoard,
+      isImportant,
+      content: uploadData,
+    }),
   });
 };
 

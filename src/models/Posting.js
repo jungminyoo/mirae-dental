@@ -6,6 +6,7 @@ const postingSchema = new mongoose.Schema({
   createdAt: { type: Date, required: true },
   lastEdit: { type: Date, required: true },
   whichBoard: { type: String, required: true },
+  isImportant: { type: String, required: true, default: false },
   meta: {
     views: { type: Number, default: 0, required: true },
   },

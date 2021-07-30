@@ -3,22 +3,46 @@ import Posting from "../models/Posting";
 import { async } from "regenerator-runtime";
 
 export const notice = async (req, res) => {
-  const postings = await Posting.find({ whichBoard: "공지사항" });
-  return res.render("pages/postings", { pageTitle: "공지사항", postings });
+  const importantPostings = await Posting.find({
+    whichBoard: "공지사항",
+    isImportant: true,
+  }).populate("author");
+  const postings = await Posting.find({ whichBoard: "공지사항" }).populate(
+    "author"
+  );
+  return res.render("pages/postings", {
+    pageTitle: "공지사항",
+    importantPostings,
+    postings,
+  });
 };
 
 export const cases = async (req, res) => {
-  const postings = await Posting.find({ whichBoard: "치료 전후 사례" });
+  const importantPostings = await Posting.find({
+    whichBoard: "치료 전후 사례",
+    isImportant: true,
+  }).populate("author");
+  const postings = await Posting.find({
+    whichBoard: "치료 전후 사례",
+  }).populate("author");
   return res.render("pages/postings", {
     pageTitle: "치료 전후 사례",
+    importantPostings,
     postings,
   });
 };
 
 export const caution = async (req, res) => {
-  const postings = await Posting.find({ whichBoard: "치료 후 주의사항" });
+  const importantPostings = await Posting.find({
+    whichBoard: "치료 후 주의사항",
+    isImportant: true,
+  }).populate("author");
+  const postings = await Posting.find({
+    whichBoard: "치료 후 주의사항",
+  }).populate("author");
   return res.render("pages/postings", {
     pageTitle: "치료 후 주의사항",
+    importantPostings,
     postings,
   });
 };
@@ -47,9 +71,15 @@ export const getUploadPosting = (req, res) => {
 
 export const postUploadPosting = async (req, res) => {
   const { title, whichBoard, content } = req.body;
+  let { isImportant } = req.body;
   const {
     user: { _id },
   } = req.session;
+  if (isImportant === "on") {
+    isImportant = true;
+  } else {
+    isImportant = false;
+  }
   try {
     const newPosting = await Posting.create({
       title,
@@ -57,6 +87,7 @@ export const postUploadPosting = async (req, res) => {
       createdAt: Date.now(),
       lastEdit: Date.now(),
       whichBoard,
+      isImportant,
       meta: {
         views: 0,
       },
