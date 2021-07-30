@@ -61,10 +61,22 @@ export const posting = async (req, res) => {
   });
 };
 
-export const deletePosting = (req, res) => {
+export const deletePosting = async (req, res) => {
   const { id } = req.params;
-
-  return res.send("<h1>Delete</h1>");
+  const {
+    user: { _id },
+  } = req.session;
+  const posting = await Posting.findById(id);
+  if (!posting) {
+    return res
+      .status(404)
+      .render("404", { pageTitle: "게시물을 찾을 수 없습니다." });
+  }
+  if (String(posting.author) !== String(_id)) {
+    return res.status(403).redirect(`/notice/${id}`);
+  }
+  await Posting.findByIdAndDelete(id);
+  return res.redirect("/notice");
 };
 
 export const getUploadPosting = (req, res) => {
