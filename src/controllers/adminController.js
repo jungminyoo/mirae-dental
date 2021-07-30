@@ -77,6 +77,16 @@ export const postEditAdmin = (req, res) => {
   return res.end();
 };
 
+export const getEditPassword = (req, res) => {
+  return res.render("pages/editPassword", {
+    pageTitle: "관리자 비밀번호 변경",
+  });
+};
+
+export const postEditPassword = (req, res) => {
+  return res.end();
+};
+
 export const logout = (req, res) => {
   req.session.destroy();
   return res.redirect("/");

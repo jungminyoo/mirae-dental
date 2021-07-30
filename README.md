@@ -24,3 +24,4 @@
   - /register - post
   - /login - post
   - /edit - post
+  - /edit/password - post

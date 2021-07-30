@@ -7,6 +7,8 @@ import {
   getEditAdmin,
   postEditAdmin,
   logout,
+  getEditPassword,
+  postEditPassword,
 } from "../controllers/adminController";
 import { protectorMiddleware, publicOnlyMiddleWare } from "../middlewares";
 
@@ -27,6 +29,11 @@ adminRouter
   .all(protectorMiddleware)
   .get(getEditAdmin)
   .post(postEditAdmin);
+adminRouter
+  .route("/edit/password")
+  .all(protectorMiddleware)
+  .get(getEditPassword)
+  .post(postEditPassword);
 adminRouter.get("/logout", protectorMiddleware, logout);
 
 export default adminRouter;
