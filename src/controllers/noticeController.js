@@ -62,6 +62,8 @@ export const posting = async (req, res) => {
 };
 
 export const deletePosting = (req, res) => {
+  const { id } = req.params;
+
   return res.send("<h1>Delete</h1>");
 };
 
@@ -106,7 +108,7 @@ export const postUploadPosting = async (req, res) => {
 };
 
 export const getEditPosting = (req, res) => {
-  return res.render("pages/edit", { pageTitle: "게시글 수정" });
+  return res.render("pages/editPosting", { pageTitle: "게시글 수정" });
 };
 
 export const postEditPosting = (req, res) => {

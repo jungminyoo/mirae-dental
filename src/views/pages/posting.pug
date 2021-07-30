@@ -6,6 +6,8 @@ block content
     small=posting.lastEdit
     small=posting.author.name
     div#content(data-content=posting.content)
+    a(href=`/notice/${posting._id}/edit`) 게시글 수정 &rarr;
+    a(href=`/notice/${posting._id}/delete`) 게시글 삭제 &rarr;
 
 block scripts
     script(src="/assets/js/posting.js")
