@@ -65,8 +65,6 @@ const handleUpload = async (event) => {
   const isImportant = isImportantInput.checked;
   const { id } = submit.dataset;
   const fetchingURL = id ? `/notice/${id}/edit` : "/notice/upload";
-  console.log(uploadData);
-  alert();
   await fetch(fetchingURL, {
     method: "POST",
     headers: {

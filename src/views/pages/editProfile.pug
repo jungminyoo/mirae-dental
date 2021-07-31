@@ -1,3 +1,12 @@
 extends ../base
 
 block content 
+    if errorMessage
+        span=errorMessage
+    form(method="POST")
+        label(for="name") 이름
+        input#name(name="name", type="text", required, placeholder="이름", value=user.name)
+        label(for="username") 아이디
+        input#username(name="username", type="text", required, placeholder="아이디", value=user.username)
+        a(href="/admin/edit/password") 비밀번호 수정 &rarr; 
+        input#submit(type="submit", value="관리자 정보 수정")

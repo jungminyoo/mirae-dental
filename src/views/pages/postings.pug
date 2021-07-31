@@ -13,6 +13,8 @@ block content
                 +posting(posting)
             else 
                 li 게시물이 없습니다.
+    if loggedInUser
+        a(href="/notice/upload") 게시글 작성 &rarr; 
 
 block scripts 
     script(src="/assets/js/notice.js")

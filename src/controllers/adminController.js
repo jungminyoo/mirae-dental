@@ -54,7 +54,7 @@ export const postLogin = async (req, res) => {
   if (!user) {
     return res.status(400).render("pages/login", {
       pageTitle,
-      errorMessage: "아이디가 일치하지 않습니다.",
+      errorMessage: "존재하지 않는 아이디입니다.",
     });
   }
   const ok = await bcrypt.compare(password, user.password);
@@ -70,11 +70,48 @@ export const postLogin = async (req, res) => {
 };
 
 export const getEditAdmin = (req, res) => {
-  return res.render("pages/editProfile", { pageTitle: "관리자 회원정보 수정" });
+  const { user } = req.session;
+  return res.render("pages/editProfile", {
+    pageTitle: "관리자 회원정보 수정",
+    user,
+  });
 };
 
-export const postEditAdmin = (req, res) => {
-  return res.end();
+export const postEditAdmin = async (req, res) => {
+  const { name, username } = req.body;
+  const {
+    user: { _id },
+  } = req.session;
+  const sessionName = req.session.user.name;
+  const sessionUsername = req.session.user.username;
+  if (sessionName !== name) {
+    const existsName = await User.exists({ name });
+    if (existsName) {
+      return res.status(400).render("pages/editProfile", {
+        pageTitle: "관리자 회원정보 수정",
+        errorMessage: "이미 존재하는 이름입니다.",
+      });
+    }
+  }
+  if (sessionUsername !== username) {
+    const existsUsername = await User.exists({ username });
+    if (existsUsername) {
+      return res.status(400).render("pages/editProfile", {
+        pageTitle: "관리자 회원정보 수정",
+        errorMessage: "이미 존재하는 아이디입니다.",
+      });
+    }
+  }
+  const updatedUser = await User.findByIdAndUpdate(
+    _id,
+    {
+      name,
+      username,
+    },
+    { new: true }
+  );
+  req.session.user = updatedUser;
+  return res.redirect("/admin/edit");
 };
 
 export const getEditPassword = (req, res) => {
@@ -83,8 +120,35 @@ export const getEditPassword = (req, res) => {
   });
 };
 
-export const postEditPassword = (req, res) => {
-  return res.end();
+export const postEditPassword = async (req, res) => {
+  const { old_password, new_password, new_password_confirm } = req.body;
+  const {
+    user: { _id },
+  } = req.session;
+  const user = await User.findById(_id);
+  const ok = await bcrypt.compare(old_password, user.password);
+  if (!ok) {
+    return res.status(400).render("pages/editPassword", {
+      pageTitle: "관리자 비밀번호 변경",
+      errorMessage: "이전 비밀번호가 일치하지 않습니다.",
+    });
+  }
+  if (new_password !== new_password_confirm) {
+    return res.status(400).render("pages/editPassword", {
+      pageTitle: "관리자 비밀번호 변경",
+      errorMessage: "비밀번호가 서로 일치하지 않습니다.",
+    });
+  }
+  if (new_password !== user.password) {
+    return res.status(400).render("pages/editPassword", {
+      pageTitle: "관리자 비밀번호 변경",
+      errorMessage: "기존 비밀번호와 일치합니다.",
+    });
+  }
+  user.password = new_password;
+  user.save();
+  req.session.user.password = user.password;
+  return res.redirect("/admin/edit");
 };
 
 export const logout = (req, res) => {
