@@ -8,7 +8,7 @@ block content
         small=posting.author.name
     else 
         small 게시자 알수없음
-    div#content.post(data-content=posting.content)
+    div#content.post(data-content=posting.content, data-id=posting._id)
     if loggedInUser
         if String(posting.author._id) === String(loggedInUser._id)
             a(href=`/notice/${posting._id}/edit`) 게시글 수정 &rarr;

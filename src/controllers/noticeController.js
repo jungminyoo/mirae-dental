@@ -84,8 +84,7 @@ export const getUploadPosting = (req, res) => {
 };
 
 export const postUploadPosting = async (req, res) => {
-  const { title, whichBoard, content, isImportant, test } = req.body;
-  console.log(test);
+  const { title, whichBoard, content, isImportant } = req.body;
   const {
     user: { _id },
   } = req.session;
@@ -160,5 +159,16 @@ export const postEditPosting = async (req, res) => {
 export const apiImage = (req, res) => {
   const { path: fileUrl } = req.file;
   res.append("imgPath", fileUrl);
+  return res.sendStatus(200);
+};
+
+export const apiViews = async (req, res) => {
+  const { id } = req.params;
+  const posting = await Posting.findById(id);
+  if (!posting) {
+    return res.sendStatus(404);
+  }
+  posting.meta.views = posting.meta.views + 1;
+  await posting.save();
   return res.sendStatus(200);
 };
