@@ -139,7 +139,8 @@ export const postEditPassword = async (req, res) => {
       errorMessage: "비밀번호가 서로 일치하지 않습니다.",
     });
   }
-  if (new_password !== user.password) {
+  const isNew = await bcrypt.compare(new_password, user.password);
+  if (isNew) {
     return res.status(400).render("pages/editPassword", {
       pageTitle: "관리자 비밀번호 변경",
       errorMessage: "기존 비밀번호와 일치합니다.",
