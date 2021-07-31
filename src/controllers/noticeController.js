@@ -84,7 +84,8 @@ export const getUploadPosting = (req, res) => {
 };
 
 export const postUploadPosting = async (req, res) => {
-  const { title, whichBoard, content, isImportant } = req.body;
+  const { title, whichBoard, content, isImportant, test } = req.body;
+  console.log(test);
   const {
     user: { _id },
   } = req.session;
@@ -154,4 +155,10 @@ export const postEditPosting = async (req, res) => {
     return res.status(403).redirect(`/notice/${id}`);
   }
   return res.redirect(`/notice/${id}`);
+};
+
+export const apiImage = (req, res) => {
+  const { path: fileUrl } = req.file;
+  res.append("imgPath", fileUrl);
+  return res.sendStatus(200);
 };

@@ -9,6 +9,7 @@ import introRouter from "./routers/introRouter";
 import treatRouter from "./routers/treatRouter";
 import adminRouter from "./routers/adminRouter";
 import noticeRouter from "./routers/noticeRouter";
+import apiRouter from "./routers/apiRouter";
 import { localsMiddleware, page404Middleware } from "./middlewares";
 
 const app = express();
@@ -32,11 +33,13 @@ app.use(
 
 app.use(localsMiddleware);
 app.use("/assets", express.static("assets"));
+app.use("/uploads", express.static("uploads"));
 app.use("/", rootRouter);
 app.use("/intro", introRouter);
 app.use("/treatment", treatRouter);
 app.use("/admin", adminRouter);
 app.use("/notice", noticeRouter);
+app.use("/api", apiRouter);
 app.use(page404Middleware);
 
 const handleListening = () => console.log(`Server listening on port ${PORT}`);

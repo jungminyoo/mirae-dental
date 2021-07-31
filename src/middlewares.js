@@ -1,3 +1,5 @@
+import multer from "multer";
+
 export const page404Middleware = (req, res) => {
   return res.status(404).render("pages/404", { pageTitle: "404 Not Found" });
 };
@@ -23,3 +25,7 @@ export const publicOnlyMiddleWare = (req, res, next) => {
     return res.redirect("/");
   }
 };
+
+export const uploadImage = multer({
+  dest: "uploads/img",
+});
