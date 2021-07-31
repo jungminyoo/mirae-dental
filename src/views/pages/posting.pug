@@ -4,7 +4,10 @@ block content
     h1=posting.title
     small=posting.createdAt
     small=posting.lastEdit
-    small=posting.author.name
+    if posting.author
+        small=posting.author.name
+    else 
+        small 게시자 알수없음
     div#content.post(data-content=posting.content)
     if loggedInUser
         if String(posting.author._id) === String(loggedInUser._id)
