@@ -37,9 +37,10 @@ export const postRegister = async (req, res) => {
   } catch (error) {
     return res.status(400).render("pages/register", {
       pageTitle,
-      errorMessage: error._message,
+      errorMessage: "관리자 가입 도중 오류가 발생했습니다. 다시 시도해주세요.",
     });
   }
+  req.flash("notice", "정상적으로 가입되었습니다. 로그인해 주세요.");
   return res.redirect("/admin/login");
 };
 
@@ -66,6 +67,7 @@ export const postLogin = async (req, res) => {
   }
   req.session.loggedIn = true;
   req.session.user = user;
+  req.flash("notice", "정상적으로 로그인되었습니다.");
   return res.redirect("/");
 };
 
@@ -102,16 +104,25 @@ export const postEditAdmin = async (req, res) => {
       });
     }
   }
-  const updatedUser = await User.findByIdAndUpdate(
-    _id,
-    {
-      name,
-      username,
-    },
-    { new: true }
-  );
-  req.session.user = updatedUser;
-  return res.redirect("/admin/edit");
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      _id,
+      {
+        name,
+        username,
+      },
+      { new: true }
+    );
+    req.session.user = updatedUser;
+    req.flash("notice", "관리자 회원정보가 정상적으로 수정되었습니다.");
+    return res.redirect("/admin/edit");
+  } catch (error) {
+    return res.render("pages/editProfile", {
+      pageTitle: "관리자 회원정보 수정",
+      errorMessage:
+        "관리자 회원정보 수정 도중 오류가 발생했습니다. 다시 시도해주세요.",
+    });
+  }
 };
 
 export const getEditPassword = (req, res) => {
@@ -146,10 +157,19 @@ export const postEditPassword = async (req, res) => {
       errorMessage: "기존 비밀번호와 일치합니다.",
     });
   }
-  user.password = new_password;
-  user.save();
-  req.session.user.password = user.password;
-  return res.redirect("/admin/edit");
+  try {
+    user.password = new_password;
+    user.save();
+    req.session.user.password = user.password;
+    req.flash("notice", "관리자 비밀번호가 정상적으로 변경되었습니다.");
+    return res.redirect("/admin/edit");
+  } catch (error) {
+    return res.render("pages/editPassword", {
+      pageTitle: "관리자 비밀번호 변경",
+      errorMessage:
+        "관리자 비밀번호 변경 도중 오류가 발생했습니다. 다시 시도해주세요.",
+    });
+  }
 };
 
 export const logout = (req, res) => {

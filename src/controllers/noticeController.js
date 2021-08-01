@@ -53,6 +53,7 @@ export const posting = async (req, res) => {
   if (!posting) {
     return res.status(400).render("pages/404", {
       pageTitle: "게시물을 찾을 수 없습니다",
+      errorMessage: "게시물을 찾을 수 없습니다",
     });
   }
   return res.render("pages/posting", {
@@ -68,14 +69,17 @@ export const deletePosting = async (req, res) => {
   } = req.session;
   const posting = await Posting.findById(id);
   if (!posting) {
-    return res
-      .status(404)
-      .render("404", { pageTitle: "게시물을 찾을 수 없습니다." });
+    return res.status(404).render("404", {
+      pageTitle: "게시물을 찾을 수 없습니다.",
+      errorMessage: "게시물을 찾을 수 없습니다.",
+    });
   }
   if (String(posting.author) !== String(_id)) {
+    req.flash("error", "이 게시물의 작성자가 아닙니다.");
     return res.status(403).redirect(`/notice/${id}`);
   }
   await Posting.findByIdAndDelete(id);
+  req.flash("notice", "게시물이 정상적으로 삭제되었습니다.");
   return res.redirect("/notice");
 };
 
@@ -108,7 +112,7 @@ export const postUploadPosting = async (req, res) => {
   } catch (error) {
     return res.status(400).render("pages/upload", {
       pageTitle: "게시글 작성",
-      errorMessage: error._message,
+      errorMessage: "게시물 등록 도중 오류가 발생했습니다. 다시 시도해주세요.",
     });
   }
 };
@@ -125,6 +129,7 @@ export const getEditPosting = async (req, res) => {
   const isCaution = posting.whichBoard === "치료 후 주의사항" ? true : false;
   console.log(typeof isImportant, isImportant);
   if (String(posting.author) !== String(_id)) {
+    req.flash("error", "이 게시물의 작성자가 아닙니다.");
     return res.status(403).redirect(`/notice/${id}`);
   }
   return res.render("pages/editPosting", {
@@ -143,17 +148,26 @@ export const postEditPosting = async (req, res) => {
     user: { _id },
   } = req.session;
   const { title, whichBoard, content, isImportant } = req.body;
-  const postingEdited = await Posting.findByIdAndUpdate(id, {
-    title,
-    whichBoard,
-    content,
-    isImportant: isImportant,
-    lastEdit: Date.now(),
-  });
-  if (String(postingEdited.author) !== String(_id)) {
+  const posting = await Posting.findById(id);
+  if (String(posting.author) !== String(_id)) {
+    req.flash("error", "이 게시물의 작성자가 아닙니다.");
     return res.status(403).redirect(`/notice/${id}`);
   }
-  return res.redirect(`/notice/${id}`);
+  try {
+    await Posting.findByIdAndUpdate(id, {
+      title,
+      whichBoard,
+      content,
+      isImportant: isImportant,
+      lastEdit: Date.now(),
+    });
+    return res.redirect(`/notice/${id}`);
+  } catch (error) {
+    return res.status(400).render("pages/editPosting", {
+      pageTitle,
+      errorMessage: "게시물 수정 도중 오류가 발생했습니다. 다시 시도해주세요.",
+    });
+  }
 };
 
 export const apiImage = (req, res) => {

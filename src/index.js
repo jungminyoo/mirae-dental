@@ -3,6 +3,7 @@ import "dotenv/config";
 import morgan from "morgan";
 import session from "express-session";
 import MongoStore from "connect-mongo";
+import flash from "express-flash";
 import "./db";
 import rootRouter from "./routers/rootRouter";
 import introRouter from "./routers/introRouter";
@@ -31,6 +32,7 @@ app.use(
   })
 );
 
+app.use(flash());
 app.use(localsMiddleware);
 app.use("/assets", express.static("assets"));
 app.use("/uploads", express.static("uploads"));

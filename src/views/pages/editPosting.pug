@@ -23,6 +23,7 @@ block content
             input#isImportant(name="isImportant", type="checkbox", checked)
         else 
             input#isImportant(name="isImportant", type="checkbox")
+        input(hidden, name="isFromEditor", value="edit")
         #editor.post(name="editor", data-content=posting.content)
         input#submit(type="submit", data-id=posting.id, value="수정")
 
