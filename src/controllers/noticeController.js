@@ -1,11 +1,13 @@
 import User from "../models/User";
 import Posting from "../models/Posting";
 import { async } from "regenerator-runtime";
+import { QuillDeltaToHtmlConverter } from "quill-delta-to-html";
 
 const POSTING_MAX = 10;
 const IMP_POSTING_MAX = 5;
 
 const processPage = (page, importantPostings, postings) => {
+  importantPostings = importantPostings.reverse();
   importantPostings = importantPostings.slice(0, IMP_POSTING_MAX);
   const impLength = importantPostings.length;
   postings = postings.reverse();
@@ -23,60 +25,130 @@ const processPage = (page, importantPostings, postings) => {
   return resultPostings;
 };
 
-export const notice = async (req, res) => {
+const findPostings = async (search, value, whichBoard) => {
+  let importantPostings;
+  let postings;
+  console.log(search, value);
+  if (search === "title") {
+    importantPostings = await Posting.find({
+      whichBoard,
+      isImportant: true,
+      title: { $regex: `${value}` },
+    }).populate("author");
+    postings = await Posting.find({
+      whichBoard,
+      title: { $regex: `${value}` },
+    }).populate("author");
+  } else if (search === "content") {
+    importantPostings = await Posting.find({
+      whichBoard,
+      isImportant: true,
+    }).populate("author");
+    postings = await Posting.find({
+      whichBoard,
+    }).populate("author");
+
+    importantPostings = importantPostings.filter((posting) => {
+      const converter = new QuillDeltaToHtmlConverter(posting.content.ops);
+      const content = converter.convert();
+      return content.includes(value);
+    });
+    postings = postings.filter((posting) => {
+      const converter = new QuillDeltaToHtmlConverter(posting.content.ops);
+      const content = converter.convert();
+      return content.includes(value);
+    });
+  } else if (search === "author") {
+    importantPostings = await Posting.find({
+      whichBoard,
+      isImportant: true,
+    }).populate("author");
+    postings = await Posting.find({
+      whichBoard,
+    }).populate("author");
+
+    importantPostings = importantPostings.filter((posting) => {
+      return posting.author.name.includes(value);
+    });
+    postings = postings.filter((posting) => {
+      return posting.author.name.includes(value);
+    });
+  } else {
+    importantPostings = [];
+    postings = [];
+  }
+  return [importantPostings, postings];
+};
+
+export const postings = async (req, res) => {
   const { page } = req.params;
-  let importantPostings = await Posting.find({
-    whichBoard: "공지사항",
-    isImportant: true,
-  }).populate("author");
-  let postings = await Posting.find({ whichBoard: "공지사항" }).populate(
-    "author"
-  );
+  const { search, value } = req.query;
+  let searchPage;
+  let whichBoard;
+  if (req.originalUrl.includes("cases")) {
+    whichBoard = "치료 전후 사례";
+    searchPage = "/cases/";
+  } else if (req.originalUrl.includes("caution")) {
+    whichBoard = "치료 후 주의사항";
+    searchPage = "/caution/";
+  } else {
+    whichBoard = "공지사항";
+    searchPage = "/";
+  }
+  let importantPostings;
+  let postings;
+  if (search && value) {
+    const searchPostings = await findPostings(search, value, whichBoard);
+    importantPostings = searchPostings[0];
+    postings = searchPostings[1];
+  } else {
+    importantPostings = await Posting.find({
+      whichBoard,
+      isImportant: true,
+    }).populate("author");
+    postings = await Posting.find({
+      whichBoard,
+    }).populate("author");
+  }
+  console.log(importantPostings, postings);
   const result = processPage(page, importantPostings, postings);
   importantPostings = result[0];
   postings = result[1];
+  return res.render("pages/postings", {
+    pageTitle: whichBoard,
+    importantPostings,
+    postings,
+    searchPage,
+  });
+};
+
+export const noticeSearch = (req, res) => {
+  const searchPage = "/";
+  const { search, value } = req.query;
   return res.render("pages/postings", {
     pageTitle: "공지사항",
-    importantPostings,
     postings,
+    searchPage,
   });
 };
 
-export const cases = async (req, res) => {
-  const { page } = req.params;
-  let importantPostings = await Posting.find({
-    whichBoard: "치료 전후 사례",
-    isImportant: true,
-  }).populate("author");
-  let postings = await Posting.find({
-    whichBoard: "치료 전후 사례",
-  }).populate("author");
-  const result = processPage(page, importantPostings, postings);
-  importantPostings = result[0];
-  postings = result[1];
+export const casesSearch = (req, res) => {
+  const searchPage = "/cases/";
+  const { search, value } = req.query;
   return res.render("pages/postings", {
     pageTitle: "치료 전후 사례",
-    importantPostings,
     postings,
+    searchPage,
   });
 };
 
-export const caution = async (req, res) => {
-  const { page } = req.params;
-  let importantPostings = await Posting.find({
-    whichBoard: "치료 후 주의사항",
-    isImportant: true,
-  }).populate("author");
-  let postings = await Posting.find({
-    whichBoard: "치료 후 주의사항",
-  }).populate("author");
-  const result = processPage(page, importantPostings, postings);
-  importantPostings = result[0];
-  postings = result[1];
+export const cautionSearch = (req, res) => {
+  const searchPage = "/caution/";
+  const { search, value } = req.query;
   return res.render("pages/postings", {
     pageTitle: "치료 후 주의사항",
-    importantPostings,
     postings,
+    searchPage,
   });
 };
 

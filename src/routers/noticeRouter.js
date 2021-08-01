@@ -1,10 +1,8 @@
 import express from "express";
 import {
-  notice,
+  postings,
   getUploadPosting,
   postUploadPosting,
-  cases,
-  caution,
   posting,
   getEditPosting,
   postEditPosting,
@@ -14,9 +12,12 @@ import { protectorMiddleware } from "../middlewares";
 
 const noticeRouter = express.Router();
 
-noticeRouter.get("/:page(\\d+)", notice);
-noticeRouter.get("/cases/:page(\\d+)", cases);
-noticeRouter.get("/caution/:page(\\d+)", caution);
+noticeRouter.get("/:page(\\d+)", postings);
+noticeRouter.get("/search/:page(\\d+)", postings);
+noticeRouter.get("/cases/:page(\\d+)", postings);
+noticeRouter.get("/cases/search/:page(\\d+)", postings);
+noticeRouter.get("/caution/:page(\\d+)", postings);
+noticeRouter.get("/caution/search/:page(\\d+)", postings);
 noticeRouter
   .route("/upload")
   .all(protectorMiddleware)
