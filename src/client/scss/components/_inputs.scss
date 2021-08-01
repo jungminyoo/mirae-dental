@@ -1,0 +1,32 @@
+.admin {
+  width: 620px;
+  background-color: $bg;
+  border: 1px solid rgba($color: $border, $alpha: 0.3);
+  border-radius: 30px;
+  padding: 74px 135px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .input_container {
+    display: flex;
+    flex-direction: column;
+    .input {
+      margin: 5px 0;
+      width: 211px;
+      height: 47px;
+      background-color: $bg;
+      border: 1px solid rgba($color: $border, $alpha: 0.5);
+      border-radius: 5px;
+      box-shadow: inset 0px 0px 5px rgba($color: $font, $alpha: 0.16);
+      padding-left: 7px;
+      font-size: 15px;
+      &:hover {
+        box-shadow: inset 0px 0px 10px rgba($color: $font, $alpha: 0.16);
+        transition: box-shadow 0.2s ease-in-out;
+      }
+      &:active {
+        box-shadow: inset 0px 0px 10px rgba($color: $font, $alpha: 0.16);
+      }
+    }
+  }
+}

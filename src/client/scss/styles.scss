@@ -9,9 +9,11 @@
 @import "./components/_sns.scss";
 @import "./components/_footer.scss";
 @import "./components/_message.scss";
+@import "./components/_inputs.scss";
 
 // Screens
 @import "./screens/_home.scss";
+@import "./screens/_login.scss";
 
 // Defaults
 * {
@@ -22,7 +24,7 @@ body {
   font-family: "Noto Sans KR", sans-serif;
   background-color: $bg;
   width: 100%;
-  height: 1000vh;
+  height: max-content;
   position: relative;
   display: flex;
   justify-content: center;
@@ -30,5 +32,6 @@ body {
 
 main {
   width: 100%;
+  height: 100%;
   padding: 57px 16vw;
 }

@@ -1,11 +1,14 @@
 extends ../base
 
 block content 
-    if errorMessage
-        span=errorMessage
-    form(method="POST")
-        label(for="username") 아이디
-        input#username(name="username", type="text", required, placeholder="아이디")
-        label(for="password") 비밀번호
-        input#password(name="password", type="password", required, placeholder="비밀번호")
-        input#submit(type="submit", value="관리자 가입")
+    .login
+        h1=pageTitle
+        if errorMessage
+            span=errorMessage
+        form.admin(method="POST")
+            .input_container
+                label(for="username") 아이디
+                input#username.input(name="username", type="text", required, placeholder="아이디")
+                label(for="password") 비밀번호
+                input#password.input(name="password", type="password", required, placeholder="비밀번호")
+            input#submit(type="submit", value="로그인")
