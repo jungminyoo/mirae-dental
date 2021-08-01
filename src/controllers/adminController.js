@@ -173,6 +173,12 @@ export const postEditPassword = async (req, res) => {
 };
 
 export const logout = (req, res) => {
-  req.session.destroy();
-  return res.redirect("/");
+  if (req.session.user) {
+    delete req.session.user;
+    req.session.loggedIn = false;
+    req.flash("notice", "정상적으로 로그아웃 되었습니다.");
+    return res.redirect("/");
+  } else {
+    return res.redirect("/");
+  }
 };
