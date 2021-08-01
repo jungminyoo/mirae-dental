@@ -1,7 +1,12 @@
 import multer from "multer";
 
 export const page404Middleware = (req, res) => {
-  return res.status(404).render("pages/404", { pageTitle: "404 Not Found" });
+  return res
+    .status(404)
+    .render("pages/404", {
+      pageTitle: "404 Not Found",
+      errorMessage: "404 Not Found",
+    });
 };
 
 export const localsMiddleware = (req, res, next) => {
