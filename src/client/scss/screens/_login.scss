@@ -17,12 +17,13 @@
     margin-right: 10px;
   }
   & #submit {
-    background-color: #bee0d9;
+    background-color: $button;
     border: none;
     width: 128px;
     height: 128px;
     border-radius: 10px;
     font-size: 20px;
+    font-weight: 500;
     &:hover {
       cursor: pointer;
     }

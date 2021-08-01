@@ -1,0 +1,13 @@
+.error__admin {
+  width: 620px;
+  height: 40px;
+  margin-bottom: 10px;
+  background-color: rgba($color: $red, $alpha: 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+}
