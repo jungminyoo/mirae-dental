@@ -1,7 +1,7 @@
 extends ../base
 
 block content 
-    form(action="/notice")
+    form(action=`/notice/${posting.id}`)
         label(for="title") 제목
         input#title(name="title", type="text", required, placeholder="제목을 작성하세요.", value=posting.title)
         label(for="whichBoard") 게시판 선택
@@ -23,7 +23,6 @@ block content
             input#isImportant(name="isImportant", type="checkbox", checked)
         else 
             input#isImportant(name="isImportant", type="checkbox")
-        input(hidden, name="isFromEditor", value="edit")
         #editor.post(name="editor", data-content=posting.content)
         input#submit(type="submit", data-id=posting.id, value="수정")
 

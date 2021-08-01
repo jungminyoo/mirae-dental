@@ -3,7 +3,7 @@ extends ../base
 block content 
     if errorMessage
         span=errorMessage
-    form(action="/notice")
+    form(action="/notice/1")
         label(for="title") 제목
         input#title(name="title", type="text", required, placeholder="제목을 작성하세요.")
         label(for="whichBoard") 게시판 선택
@@ -13,7 +13,6 @@ block content
             option(value="치료 후 주의사항") 치료 후 주의사항
         label(for="isImportant") 공지 여부
         input#isImportant(name="isImportant", type="checkbox")
-        input(hidden, name="isFromEditor", value="upload")
         #editor.post(name="editor") 
         input#submit(type="submit", value="게시")
 

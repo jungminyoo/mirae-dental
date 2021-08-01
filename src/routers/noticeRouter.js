@@ -14,9 +14,9 @@ import { protectorMiddleware } from "../middlewares";
 
 const noticeRouter = express.Router();
 
-noticeRouter.get("/", notice);
-noticeRouter.get("/cases", cases);
-noticeRouter.get("/caution", caution);
+noticeRouter.get("/:page(\\d+)", notice);
+noticeRouter.get("/cases/:page(\\d+)", cases);
+noticeRouter.get("/caution/:page(\\d+)", caution);
 noticeRouter
   .route("/upload")
   .all(protectorMiddleware)

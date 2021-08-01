@@ -2,14 +2,39 @@ import User from "../models/User";
 import Posting from "../models/Posting";
 import { async } from "regenerator-runtime";
 
+const POSTING_MAX = 10;
+const IMP_POSTING_MAX = 5;
+
+const processPage = (page, importantPostings, postings) => {
+  importantPostings = importantPostings.slice(0, IMP_POSTING_MAX);
+  const impLength = importantPostings.length;
+  postings = postings.reverse();
+  const originalLength = postings.length;
+  const postLength = POSTING_MAX - impLength;
+  postings = postings.slice(
+    postLength * (page - 1),
+    postLength * (page - 1) + postLength
+  );
+  const realLength = postings.length;
+  for (let i = 0; i < realLength; i++) {
+    postings[i].index = originalLength - (postLength * (page - 1) + i);
+  }
+  const resultPostings = [importantPostings, postings];
+  return resultPostings;
+};
+
 export const notice = async (req, res) => {
-  const importantPostings = await Posting.find({
+  const { page } = req.params;
+  let importantPostings = await Posting.find({
     whichBoard: "공지사항",
     isImportant: true,
   }).populate("author");
-  const postings = await Posting.find({ whichBoard: "공지사항" }).populate(
+  let postings = await Posting.find({ whichBoard: "공지사항" }).populate(
     "author"
   );
+  const result = processPage(page, importantPostings, postings);
+  importantPostings = result[0];
+  postings = result[1];
   return res.render("pages/postings", {
     pageTitle: "공지사항",
     importantPostings,
@@ -18,13 +43,17 @@ export const notice = async (req, res) => {
 };
 
 export const cases = async (req, res) => {
-  const importantPostings = await Posting.find({
+  const { page } = req.params;
+  let importantPostings = await Posting.find({
     whichBoard: "치료 전후 사례",
     isImportant: true,
   }).populate("author");
-  const postings = await Posting.find({
+  let postings = await Posting.find({
     whichBoard: "치료 전후 사례",
   }).populate("author");
+  const result = processPage(page, importantPostings, postings);
+  importantPostings = result[0];
+  postings = result[1];
   return res.render("pages/postings", {
     pageTitle: "치료 전후 사례",
     importantPostings,
@@ -33,13 +62,17 @@ export const cases = async (req, res) => {
 };
 
 export const caution = async (req, res) => {
-  const importantPostings = await Posting.find({
+  const { page } = req.params;
+  let importantPostings = await Posting.find({
     whichBoard: "치료 후 주의사항",
     isImportant: true,
   }).populate("author");
-  const postings = await Posting.find({
+  let postings = await Posting.find({
     whichBoard: "치료 후 주의사항",
   }).populate("author");
+  const result = processPage(page, importantPostings, postings);
+  importantPostings = result[0];
+  postings = result[1];
   return res.render("pages/postings", {
     pageTitle: "치료 후 주의사항",
     importantPostings,
@@ -80,7 +113,7 @@ export const deletePosting = async (req, res) => {
   }
   await Posting.findByIdAndDelete(id);
   req.flash("notice", "게시물이 정상적으로 삭제되었습니다.");
-  return res.redirect("/notice");
+  return res.redirect("/notice/1");
 };
 
 export const getUploadPosting = (req, res) => {
@@ -108,7 +141,7 @@ export const postUploadPosting = async (req, res) => {
     const user = await User.findById(_id);
     user.postings.push(newPosting._id);
     await user.save();
-    return res.redirect("/notice");
+    return res.redirect("/notice/1");
   } catch (error) {
     return res.status(400).render("pages/upload", {
       pageTitle: "게시글 작성",
@@ -127,7 +160,6 @@ export const getEditPosting = async (req, res) => {
   const isNotice = posting.whichBoard === "공지사항" ? true : false;
   const isCase = posting.whichBoard === "치료 전후 사례" ? true : false;
   const isCaution = posting.whichBoard === "치료 후 주의사항" ? true : false;
-  console.log(typeof isImportant, isImportant);
   if (String(posting.author) !== String(_id)) {
     req.flash("error", "이 게시물의 작성자가 아닙니다.");
     return res.status(403).redirect(`/notice/${id}`);
@@ -158,7 +190,7 @@ export const postEditPosting = async (req, res) => {
       title,
       whichBoard,
       content,
-      isImportant: isImportant,
+      isImportant,
       lastEdit: Date.now(),
     });
     return res.redirect(`/notice/${id}`);

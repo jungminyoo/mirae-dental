@@ -1,3 +1,5 @@
 mixin posting(posting)
     li 
+        span=posting.index
+    li 
         a(href=`/notice/${posting._id}`)=posting.title
