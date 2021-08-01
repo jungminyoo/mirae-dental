@@ -10,8 +10,8 @@
   .input_container {
     display: flex;
     flex-direction: column;
+    gap: 5px;
     .input {
-      margin: 5px 0;
       width: 211px;
       height: 47px;
       background-color: $bg;
@@ -20,11 +20,13 @@
       box-shadow: inset 0px 0px 5px rgba($color: $font, $alpha: 0.16);
       padding-left: 7px;
       font-size: 15px;
+      transition: box-shadow 0.2s ease-in-out;
       &:hover {
         box-shadow: inset 0px 0px 10px rgba($color: $font, $alpha: 0.16);
         transition: box-shadow 0.2s ease-in-out;
       }
-      &:active {
+      &:focus {
+        outline: none;
         box-shadow: inset 0px 0px 10px rgba($color: $font, $alpha: 0.16);
       }
     }
