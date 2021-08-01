@@ -1,4 +1,11 @@
 mixin importantPosting(importantPosting)
-    li 
-        i.fas.fa-bullhorn
-        a(href=`/notice/${importantPosting._id}`)=importantPosting.title
+    li.posting
+        .posting_number.kind
+            i.fas.fa-bullhorn
+        a.posting_title(href=`/notice/${importantPosting._id}`)=importantPosting.title
+        .posting_views.kind
+            span=importantPosting.meta.views
+        .posting_author.kind
+            span=importantPosting.author.name
+        .posting_createdAt.kind
+            span #{importantPosting.createdAt.getFullYear()}.#{String(importantPosting.createdAt.getMonth()).padStart(2, "0")}.#{String(importantPosting.createdAt.getDate()).padStart(2, "0")}

@@ -1,5 +1,11 @@
 mixin posting(posting)
-    li 
-        span=posting.index
-    li 
-        a(href=`/notice/${posting._id}`)=posting.title
+    li.posting
+        .posting_number.kind
+            span=posting.index
+        a.posting_title(href=`/notice/${posting._id}`)=posting.title
+        .posting_views.kind
+            span=posting.meta.views
+        .posting_author.kind
+            span=posting.author.name
+        .posting_createdAt.kind
+            span #{posting.createdAt.getFullYear()}.#{String(posting.createdAt.getMonth()).padStart(2, "0")}.#{String(posting.createdAt.getDate()).padStart(2, "0")}

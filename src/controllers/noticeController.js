@@ -110,7 +110,14 @@ export const postings = async (req, res) => {
       whichBoard,
     }).populate("author");
   }
-  console.log(importantPostings, postings);
+  let maxPage;
+  const postLength = POSTING_MAX - importantPostings.length;
+  if (postings.length % postLength > 0) {
+    maxPage = Math.floor(postings.length / postLength) + 1;
+  } else {
+    maxPage = Math.floor(postings.length / postLength);
+  }
+  const pageArr = [...Array(maxPage).keys()];
   const result = processPage(page, importantPostings, postings);
   importantPostings = result[0];
   postings = result[1];
@@ -119,6 +126,9 @@ export const postings = async (req, res) => {
     importantPostings,
     postings,
     searchPage,
+    page,
+    maxPage,
+    pageArr,
   });
 };
 
