@@ -165,6 +165,14 @@ export const cautionSearch = (req, res) => {
 export const posting = async (req, res) => {
   const { id } = req.params;
   const posting = await Posting.findById(id).populate("author");
+  let backPage;
+  if (posting.whichBoard === "치료 전후 사례") {
+    backPage = "/cases/";
+  } else if (posting.whichBoard === "치료 후 주의사항") {
+    backPage = "/caution/";
+  } else {
+    backPage = "/";
+  }
   if (!posting) {
     return res.status(400).render("pages/404", {
       pageTitle: "게시물을 찾을 수 없습니다",
@@ -174,6 +182,7 @@ export const posting = async (req, res) => {
   return res.render("pages/posting", {
     pageTitle: posting.title,
     posting,
+    backPage,
   });
 };
 

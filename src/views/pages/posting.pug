@@ -1,18 +1,33 @@
 extends ../base
 
 block content
-    h1=posting.title
-    small=posting.createdAt
-    small=posting.lastEdit
-    if posting.author
-        small=posting.author.name
-    else 
-        small 게시자 알수없음
-    div#content.post(data-content=posting.content, data-id=posting._id)
-    if loggedInUser
-        if String(posting.author._id) === String(loggedInUser._id)
-            a(href=`/notice/${posting._id}/edit`) 게시글 수정 &rarr;
-            a(href=`/notice/${posting._id}/delete`) 게시글 삭제 &rarr;
+    .posting__page
+        .posting_header
+            .posting_info
+                small=posting.whichBoard
+                h1=posting.title
+                .posting_meta
+                    small 작성일 #{posting.createdAt.getFullYear()}.#{String(posting.createdAt.getMonth()).padStart(2, "0")}.#{String(posting.createdAt.getDate()).padStart(2, "0")}
+                    small |
+                    small 최근 수정일 #{posting.lastEdit.getFullYear()}.#{String(posting.lastEdit.getMonth()).padStart(2, "0")}.#{String(posting.lastEdit.getDate()).padStart(2, "0")}
+                    small |
+                    if posting.author
+                        small 작성자 #{posting.author.name}
+                        small |
+                    else 
+                        small 작성자 알수없음
+                        small |
+                    small 조회수 #{posting.meta.views}
+            .posting_buttons
+                a.list(href=`/notice${backPage}edit`)
+                    i.fas.fa-bars
+                if loggedInUser
+                    if String(posting.author._id) === String(loggedInUser._id)
+                        a(href=`/notice/${posting._id}/edit`) 수정
+                        a(href=`/notice/${posting._id}/delete`) 삭제
+        hr
+        div#content.post(data-content=posting.content, data-id=posting._id)
+        hr
 
 block scripts
     script(src="/assets/js/posting.js")
