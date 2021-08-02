@@ -24,7 +24,7 @@ block content
                 if loggedInUser
                     if String(posting.author._id) === String(loggedInUser._id)
                         a(href=`/notice/${posting._id}/edit`) 수정
-                        a(href=`/notice/${posting._id}/delete`) 삭제
+                        a#delete 삭제
         hr
         div#content.post(data-content=posting.content, data-id=posting._id)
         hr
