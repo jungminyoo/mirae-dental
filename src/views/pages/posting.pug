@@ -19,7 +19,7 @@ block content
                         small |
                     small 조회수 #{posting.meta.views}
             .posting_buttons
-                a.list(href=`/notice${backPage}edit`)
+                a.list(href=`/notice${backPage}1`)
                     i.fas.fa-bars
                 if loggedInUser
                     if String(posting.author._id) === String(loggedInUser._id)
