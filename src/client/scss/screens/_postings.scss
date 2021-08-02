@@ -84,6 +84,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 0.1s ease-in-out;
     &:hover {
       background-color: $font;
       color: $bg;
@@ -109,6 +110,7 @@
       line-height: 40px;
       font-size: 15px;
       color: $font;
+      transition: all 0.1s ease-in-out;
       &:hover {
         background-color: $font;
         color: $bg;
@@ -134,7 +136,7 @@
   justify-content: flex-end;
   margin-bottom: 10px;
   & .toUpload {
-    background-color: $button;
+    background-color: $bg;
     border: none;
     width: 80px;
     height: 30px;
@@ -150,8 +152,13 @@
     text-align: center;
     line-height: 40px;
     font-weight: 700;
+    box-shadow: 0px 2px 5px rgba($color: $font, $alpha: 0.1);
+    transition: all 0.1s ease-in-out;
     &:hover {
       cursor: pointer;
+      background-color: $font;
+      color: $bg;
+      transition: all 0.1s ease-in-out;
     }
   }
 }
