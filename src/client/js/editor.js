@@ -63,6 +63,10 @@ const handleUpload = async (event) => {
   const title = titleInput.value;
   const whichBoard = whichBoardInput.value;
   const isImportant = isImportantInput.checked;
+  if (!title) {
+    alert("제목을 작성해주세요.");
+    return titleInput.focus({ preventScroll: false });
+  }
   const { id } = submit.dataset;
   const fetchingURL = id ? `/notice/${id}/edit` : "/notice/upload";
   await fetch(fetchingURL, {
@@ -77,6 +81,19 @@ const handleUpload = async (event) => {
       content: uploadData,
     }),
   });
+  let backPage;
+  if (whichBoard === "치료 전후 사례") {
+    backPage = "/cases/";
+  } else if (whichBoard === "치료 후 주의사항") {
+    backPage = "/caution/";
+  } else {
+    backPage = "/";
+  }
+  if (id) {
+    window.location.replace(`/notice${backPage}${id}`);
+  } else {
+    window.location.replace(`/notice${backPage}1`);
+  }
 };
 
 const handleLoad = (event) => {

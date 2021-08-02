@@ -20,6 +20,7 @@
 @import "./screens/_404.scss";
 @import "./screens/_postings.scss";
 @import "./screens/_posting.scss";
+@import "./screens/_upload.scss";
 
 // Defaults
 * {
@@ -40,4 +41,6 @@ main {
   width: 100%;
   height: 100%;
   padding: 57px 16vw;
+  display: flex;
+  justify-content: center;
 }

@@ -28,7 +28,6 @@ const processPage = (page, importantPostings, postings) => {
 const findPostings = async (search, value, whichBoard) => {
   let importantPostings;
   let postings;
-  console.log(search, value);
   if (search === "title") {
     importantPostings = await Posting.find({
       whichBoard,
@@ -129,36 +128,6 @@ export const postings = async (req, res) => {
     page,
     maxPage,
     pageArr,
-  });
-};
-
-export const noticeSearch = (req, res) => {
-  const searchPage = "/";
-  const { search, value } = req.query;
-  return res.render("pages/postings", {
-    pageTitle: "공지사항",
-    postings,
-    searchPage,
-  });
-};
-
-export const casesSearch = (req, res) => {
-  const searchPage = "/cases/";
-  const { search, value } = req.query;
-  return res.render("pages/postings", {
-    pageTitle: "치료 전후 사례",
-    postings,
-    searchPage,
-  });
-};
-
-export const cautionSearch = (req, res) => {
-  const searchPage = "/caution/";
-  const { search, value } = req.query;
-  return res.render("pages/postings", {
-    pageTitle: "치료 후 주의사항",
-    postings,
-    searchPage,
   });
 };
 

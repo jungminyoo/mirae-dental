@@ -1,30 +1,39 @@
 extends ../base
 
 block content 
-    form(action=`/notice/${posting.id}`)
-        label(for="title") 제목
-        input#title(name="title", type="text", required, placeholder="제목을 작성하세요.", value=posting.title)
-        label(for="whichBoard") 게시판 선택
-        select#whichBoard(name="whichBoard")
-            if isNotice
-                option(value="공지사항", selected) 공지사항
-            else
-                option(value="공지사항") 공지사항
-            if isCase
-                option(value="치료 전후 사례", selected) 치료 전후 사례
-            else 
-                option(value="치료 전후 사례") 치료 전후 사례
-            if isCaution
-                option(value="치료 후 주의사항", selected) 치료 후 주의사항
-            else 
-                option(value="치료 후 주의사항") 치료 후 주의사항
-        label(for="isImportant") 공지 여부
-        if isImportant
-            input#isImportant(name="isImportant", type="checkbox", checked)
-        else 
-            input#isImportant(name="isImportant", type="checkbox")
-        #editor.post(name="editor", data-content=posting.content)
-        input#submit(type="submit", data-id=posting.id, value="수정")
+    .upload
+        h1=pageTitle
+        if errorMessage
+            span.error__admin=errorMessage
+        .upload_contents
+            .upload_infos
+                .title
+                    label(for="title") 제목
+                    input#title(name="title", type="text", required, placeholder="제목을 작성하세요.", value=posting.title)
+                .board_imp
+                    .board
+                        label(for="whichBoard") 게시판 선택
+                        select#whichBoard(name="whichBoard")
+                            if isNotice
+                                option(value="공지사항", selected) 공지사항
+                            else
+                                option(value="공지사항") 공지사항
+                            if isCase
+                                option(value="치료 전후 사례", selected) 치료 전후 사례
+                            else 
+                                option(value="치료 전후 사례") 치료 전후 사례
+                            if isCaution
+                                option(value="치료 후 주의사항", selected) 치료 후 주의사항
+                            else 
+                                option(value="치료 후 주의사항") 치료 후 주의사항
+                    .imp
+                        label(for="isImportant") 공지 여부
+                        if isImportant
+                            input#isImportant(name="isImportant", type="checkbox", checked)
+                        else 
+                            input#isImportant(name="isImportant", type="checkbox")
+            #editor.post(name="editor", data-content=posting.content)
+            input#submit(type="submit", data-id=posting.id, value="수정")
 
 block scripts 
     script(src="/assets/js/editor.js")
