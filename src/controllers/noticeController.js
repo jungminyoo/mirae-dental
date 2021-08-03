@@ -7,10 +7,8 @@ const POSTING_MAX = 10;
 const IMP_POSTING_MAX = 5;
 
 const processPage = (page, importantPostings, postings) => {
-  importantPostings = importantPostings.reverse();
   importantPostings = importantPostings.slice(0, IMP_POSTING_MAX);
   const impLength = importantPostings.length;
-  postings = postings.reverse();
   const originalLength = postings.length;
   const postLength = POSTING_MAX - impLength;
   postings = postings.slice(
@@ -33,7 +31,9 @@ const findPostings = async (search, value, whichBoard) => {
       whichBoard,
       isImportant: true,
       title: { $regex: `${value}` },
-    }).populate("author");
+    })
+      .populate("author")
+      .sort({ createdAt: "desc" });
     postings = await Posting.find({
       whichBoard,
       title: { $regex: `${value}` },
@@ -42,10 +42,14 @@ const findPostings = async (search, value, whichBoard) => {
     importantPostings = await Posting.find({
       whichBoard,
       isImportant: true,
-    }).populate("author");
+    })
+      .populate("author")
+      .sort({ createdAt: "desc" });
     postings = await Posting.find({
       whichBoard,
-    }).populate("author");
+    })
+      .populate("author")
+      .sort({ createdAt: "desc" });
 
     importantPostings = importantPostings.filter((posting) => {
       const converter = new QuillDeltaToHtmlConverter(posting.content.ops);
@@ -61,10 +65,14 @@ const findPostings = async (search, value, whichBoard) => {
     importantPostings = await Posting.find({
       whichBoard,
       isImportant: true,
-    }).populate("author");
+    })
+      .populate("author")
+      .sort({ createdAt: "desc" });
     postings = await Posting.find({
       whichBoard,
-    }).populate("author");
+    })
+      .populate("author")
+      .sort({ createdAt: "desc" });
 
     importantPostings = importantPostings.filter((posting) => {
       return posting.author.name.includes(value);
@@ -104,10 +112,14 @@ export const postings = async (req, res) => {
     importantPostings = await Posting.find({
       whichBoard,
       isImportant: true,
-    }).populate("author");
+    })
+      .populate("author")
+      .sort({ createdAt: "desc" });
     postings = await Posting.find({
       whichBoard,
-    }).populate("author");
+    })
+      .populate("author")
+      .sort({ createdAt: "desc" });
   }
   let maxPage;
   const postLength = POSTING_MAX - importantPostings.length;
