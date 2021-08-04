@@ -1,5 +1,6 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const webpack = require("webpack");
 
 module.exports = {
   entry: {
@@ -14,6 +15,9 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "css/styles.css", //filename of css output
     }),
+    new webpack.ProvidePlugin({
+      "window.Quill": "quill",
+    }),
   ],
   mode: "development", //for development -> can changed into production
   watch: true,
@@ -26,6 +30,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
+        exclude: /node_modules(?!\/quill-image-resize-module)/,
         use: {
           loader: "babel-loader",
           options: {

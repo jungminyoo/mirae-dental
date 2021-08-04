@@ -1,5 +1,6 @@
 import regeneratorRuntime, { async } from "regenerator-runtime";
 import Quill from "quill";
+import ImageResize from "quill-image-resize-module";
 
 const toolbarOptions = [
   ["bold", "italic", "underline", "strike"], // toggled buttons
@@ -23,9 +24,18 @@ const toolbarOptions = [
   ["clean"], // remove formatting button
 ];
 
+Quill.register("modules/ImageResize", ImageResize);
 const options = {
   modules: {
     toolbar: toolbarOptions,
+    ImageResize: {
+      displayStyles: {
+        backgroundColor: "black",
+        border: "none",
+        color: "white",
+      },
+      modules: ["Resize", "DisplaySize", "Toolbar"],
+    },
   },
   theme: "snow",
   placeholder: "게시물을 작성하세요.",
