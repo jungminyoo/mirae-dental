@@ -91,16 +91,31 @@ export const postings = async (req, res) => {
   const { page } = req.params;
   const { search, value } = req.query;
   let searchPage;
+  let searchQuery;
   let whichBoard;
-  if (req.originalUrl.includes("cases")) {
-    whichBoard = "치료 전후 사례";
-    searchPage = "/cases/";
-  } else if (req.originalUrl.includes("caution")) {
-    whichBoard = "치료 후 주의사항";
-    searchPage = "/caution/";
+  if (req.originalUrl.includes("search")) {
+    searchQuery = `?search=${search}&value=${value}`;
+    if (req.originalUrl.includes("cases")) {
+      whichBoard = "치료 전후 사례";
+      searchPage = "/cases/search/";
+    } else if (req.originalUrl.includes("caution")) {
+      whichBoard = "치료 후 주의사항";
+      searchPage = "/caution/search/";
+    } else {
+      whichBoard = "공지사항";
+      searchPage = "/search/";
+    }
   } else {
-    whichBoard = "공지사항";
-    searchPage = "/";
+    if (req.originalUrl.includes("cases")) {
+      whichBoard = "치료 전후 사례";
+      searchPage = "/cases/";
+    } else if (req.originalUrl.includes("caution")) {
+      whichBoard = "치료 후 주의사항";
+      searchPage = "/caution/";
+    } else {
+      whichBoard = "공지사항";
+      searchPage = "/";
+    }
   }
   let importantPostings;
   let postings;
@@ -137,6 +152,7 @@ export const postings = async (req, res) => {
     importantPostings,
     postings,
     searchPage,
+    searchQuery,
     page,
     maxPage,
     pageArr,
