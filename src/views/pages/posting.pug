@@ -7,9 +7,9 @@ block content
                 small=posting.whichBoard
                 h1=posting.title
                 .posting_meta
-                    small 작성일 #{posting.createdAt.getFullYear()}.#{String(posting.createdAt.getMonth()).padStart(2, "0")}.#{String(posting.createdAt.getDate()).padStart(2, "0")}
+                    small 작성일 #{posting.createdAt.getFullYear()}.#{String(posting.createdAt.getMonth() + 1).padStart(2, "0")}.#{String(posting.createdAt.getDate()).padStart(2, "0")}
                     small |
-                    small 최근 수정일 #{posting.lastEdit.getFullYear()}.#{String(posting.lastEdit.getMonth()).padStart(2, "0")}.#{String(posting.lastEdit.getDate()).padStart(2, "0")}
+                    small 최근 수정일 #{posting.lastEdit.getFullYear()}.#{String(posting.lastEdit.getMonth() + 1).padStart(2, "0")}.#{String(posting.lastEdit.getDate()).padStart(2, "0")}
                     small |
                     if posting.author
                         small 작성자 #{posting.author.name}

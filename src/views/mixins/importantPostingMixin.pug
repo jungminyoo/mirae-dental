@@ -8,4 +8,4 @@ mixin importantPosting(importantPosting)
         .posting_author.kind
             span=importantPosting.author.name
         .posting_createdAt.kind
-            span #{importantPosting.createdAt.getFullYear()}.#{String(importantPosting.createdAt.getMonth()).padStart(2, "0")}.#{String(importantPosting.createdAt.getDate()).padStart(2, "0")}
+            span #{importantPosting.createdAt.getFullYear()}.#{String(importantPosting.createdAt.getMonth() + 1).padStart(2, "0")}.#{String(importantPosting.createdAt.getDate()).padStart(2, "0")}
