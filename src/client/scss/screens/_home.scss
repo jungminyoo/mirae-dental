@@ -21,6 +21,11 @@
       color: $font;
       transition: all 0.2s ease-in-out;
     }
+    &:focus {
+      outline: none;
+      color: $font;
+      transition: all 0.2s ease-in-out;
+    }
   }
   & .left-button {
     left: 15%;
