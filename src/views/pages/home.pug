@@ -1,4 +1,20 @@
 extends ../base
 
 block content
-    div.test
+    .carousel
+        button.left-button
+            i(class="fas fa-chevron-left")
+        button.right-button
+            i(class="fas fa-chevron-right")
+        .overflow-banner
+            ul.img-banner
+                li
+                    img(src="/uploads/sources/desk.jpg", alt="desk")
+                li
+                    img(src="/uploads/sources/lobby.jpg", alt="lobby")
+                li
+                    img(src="/uploads/sources/consult.jpg", alt="consult")
+    .test
+
+block scripts
+    script(src="/assets/js/banner.js")

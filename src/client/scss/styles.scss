@@ -35,6 +35,7 @@ body {
   position: relative;
   display: flex;
   justify-content: center;
+  overflow-x: hidden;
 }
 
 main {
@@ -42,5 +43,6 @@ main {
   height: 100%;
   padding: 57px 16vw;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

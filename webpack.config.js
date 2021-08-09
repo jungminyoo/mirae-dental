@@ -9,6 +9,7 @@ module.exports = {
     editor: "./src/client/js/editor.js",
     posting: "./src/client/js/posting.js",
     notice: "./src/client/js/notice.js",
+    banner: "./src/client/js/banner.js",
     //add more entry points here, name should be same as file name
   },
   plugins: [
