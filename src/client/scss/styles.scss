@@ -21,6 +21,8 @@
 @import "./screens/_postings.scss";
 @import "./screens/_posting.scss";
 @import "./screens/_upload.scss";
+@import "./screens/_privacy.scss";
+@import "./screens/_policy.scss";
 
 // Defaults
 * {
@@ -32,9 +34,9 @@ body {
   background-color: $bg;
   width: 100%;
   height: max-content;
-  position: relative;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   overflow-x: hidden;
 }
 

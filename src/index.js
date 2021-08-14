@@ -12,6 +12,7 @@ import adminRouter from "./routers/adminRouter";
 import noticeRouter from "./routers/noticeRouter";
 import apiRouter from "./routers/apiRouter";
 import { localsMiddleware, page404Middleware } from "./middlewares";
+import metaRouter from "./routers/metaRouter";
 
 const app = express();
 const PORT = 4000;
@@ -41,6 +42,7 @@ app.use("/intro", introRouter);
 app.use("/treatment", treatRouter);
 app.use("/admin", adminRouter);
 app.use("/notice", noticeRouter);
+app.use("/meta", metaRouter);
 app.use("/api", apiRouter);
 app.use(page404Middleware);
 
