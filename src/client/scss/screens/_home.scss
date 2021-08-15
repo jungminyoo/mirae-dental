@@ -92,8 +92,10 @@
       padding: 2vw 1.5vw;
       text-decoration: none;
       transition: all 0.2s ease-in-out;
-      & img {
+      & object {
         width: 60%;
+        height: 52%;
+        color: $font;
         object-fit: scale-down;
         margin-bottom: 0.5vw;
       }
