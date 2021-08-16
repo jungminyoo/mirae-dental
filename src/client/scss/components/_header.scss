@@ -46,12 +46,9 @@ header {
         color: $font;
       }
       & a:hover {
-        color: $blue;
+        color: $red;
         border-bottom: 2px solid;
         transition: color 0.2s ease-in-out;
-      }
-      &:first-child a:hover {
-        color: $red;
       }
       &:last-child a:hover {
         color: $purple;
