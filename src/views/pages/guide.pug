@@ -1,3 +1,34 @@
 extends ../base
 
 block content 
+    .guide 
+        h1=pageTitle
+        .guide_time 
+            h2 진료시간
+            .time_grid 
+                span.grid_item 요일
+                span.grid_item 오전진료
+                span.grid_item 식사시간
+                span.grid_item 오후진료
+                span.grid_item 주중
+                span.grid_content 10:00 ~ 12:30
+                span.grid_content 12:30 ~ 14:00
+                span.grid_content 14:00 ~ 18:30
+                span.grid_item 주말, 공휴일
+                span.grid_content 주말 (토, 일) 및 공휴일은 휴진입니다.
+        .guide_location
+            h2 오시는길
+            h4 주소
+            ul 
+                li
+                    small 도로명 | 
+                    span 경남 거제시 중곡로5길 1 근인빌딩 2층
+                li
+                    small 지번 | 
+                    span 경상남도 거제시 고현동 988-31 2층
+            #map
+
+
+block scripts 
+    script(type="text/javascript" src=`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.KAKAO_JS_KEY}`)
+    script(src="/assets/js/map.js")

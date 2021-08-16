@@ -1,6 +1,7 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
+const dotenv = require("dotenv-webpack");
 
 module.exports = {
   entry: {
@@ -10,6 +11,7 @@ module.exports = {
     posting: "./src/client/js/posting.js",
     notice: "./src/client/js/notice.js",
     banner: "./src/client/js/banner.js",
+    map: "./src/client/js/map.js",
     //add more entry points here, name should be same as file name
   },
   plugins: [
@@ -19,6 +21,7 @@ module.exports = {
     new webpack.ProvidePlugin({
       "window.Quill": "quill",
     }),
+    new dotenv(),
   ],
   mode: "development", //for development -> can changed into production
   watch: true,
