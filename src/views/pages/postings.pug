@@ -35,15 +35,13 @@ block content
             else 
                 a.page_previous(href=`/notice${searchPage}${parseInt(page) - 1}${searchQuery ? searchQuery:""}`)
                     i.fas.fa-arrow-left
-            if parseInt(maxPage) > 7
-            else 
-                .pages_container
-                    each num in pageArr 
-                        if parseInt(num) + 1 === parseInt(page)
-                            a.page.this_page(href=`/notice${searchPage}${num + 1}${searchQuery ? searchQuery:""}`)=num + 1
-                        else
-                            a.page(href=`/notice${searchPage}${num + 1}${searchQuery ? searchQuery:""}`)=num + 1
-            if parseInt(page) === parseInt(maxPage)
+            .pages_container
+                each num in pageArr.slice(Math.floor((page - 1) / 10) * 10, Math.floor((((page - 1) / 10) + 1)) * 10)
+                    if parseInt(num) + 1 === parseInt(page)
+                        a.page.this_page(href=`/notice${searchPage}${num + 1}${searchQuery ? searchQuery:""}`)=num + 1
+                    else
+                        a.page(href=`/notice${searchPage}${num + 1}${searchQuery ? searchQuery:""}`)=num + 1
+            if parseInt(page) === parseInt(maxPage) || parseInt(maxPage) === 0
                 .page_next.inactive
                     i.fas.fa-arrow-right
             else 
