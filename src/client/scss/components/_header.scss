@@ -99,4 +99,45 @@ header {
       }
     }
   }
+  .header__list {
+    position: absolute;
+    font-size: 23px;
+    right: 15px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.nav--M {
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  & .header__title {
+    & img {
+      width: 40px;
+      margin-right: 1vw;
+    }
+    & h1 {
+      font-size: 30px;
+    }
+  }
+}
+
+.nav--S {
+  align-items: center;
+  position: relative;
+  justify-content: center;
+  & .header__title {
+    & img {
+      margin-right: 1.2vw;
+    }
+    & h1 {
+      font-size: 25px;
+    }
+  }
+}
+
+.header--S {
+  padding: 15px 0;
 }

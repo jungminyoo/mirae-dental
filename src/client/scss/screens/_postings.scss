@@ -1,5 +1,5 @@
 .postings {
-  width: 100%;
+  width: 97%;
   height: max-content;
   display: flex;
   flex-direction: column;
@@ -13,7 +13,7 @@
     color: $font;
   }
   & .postings_container {
-    width: 97%;
+    width: 100%;
     height: max-content;
     background-color: white;
     margin-bottom: 20px;

@@ -1,6 +1,6 @@
 const URLSearch = new URLSearchParams(location.search);
 
-const handleLoad = (event) => {
+const handleLoad = () => {
   const search = URLSearch.get("search");
   const value = URLSearch.get("value");
   if (!search || !value) {
