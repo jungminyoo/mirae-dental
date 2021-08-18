@@ -9,6 +9,7 @@ let listBtn;
 
 export const handleListClick = () => {
   sideBar.classList.remove("side-bar--hidden");
+  sideBar.classList.add("side-bar--animation");
   setTimeout(() => {
     inactive.classList.remove("inactive");
     inactive.classList.add("inactive--showing");

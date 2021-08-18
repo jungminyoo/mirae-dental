@@ -176,7 +176,6 @@ header {
   top: 0;
   z-index: 30;
   transform: none;
-  transition: transform 0.5s ease-in-out;
   & .side-bar__header {
     width: 100%;
     display: flex;
@@ -259,5 +258,8 @@ header {
 
 .side-bar--hidden {
   transform: translateX(1000px);
+}
+
+.side-bar--animation {
   transition: transform 0.5s ease-in-out;
 }
