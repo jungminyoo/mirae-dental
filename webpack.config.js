@@ -13,6 +13,7 @@ module.exports = {
     banner: "./src/client/js/banner.js",
     map: "./src/client/js/map.js",
     facility: "./src/client/js/facility.js",
+    sidebar: "./src/client/js/sidebar.js",
     //add more entry points here, name should be same as file name
   },
   plugins: [

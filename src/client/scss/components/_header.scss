@@ -1,3 +1,14 @@
+@keyframes sideBarShow {
+  from {
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
 header {
   position: fixed;
   z-index: 10;
@@ -140,4 +151,113 @@ header {
 
 .header--S {
   padding: 15px 0;
+}
+
+.inactive--showing {
+  display: block;
+  width: 100vw;
+  height: 100%;
+  position: absolute;
+  background-color: rgba($color: $font, $alpha: 0.5);
+  z-index: 29;
+}
+
+.inactive {
+  display: none;
+}
+
+.side-bar {
+  background-color: $bg;
+  width: 40vw;
+  height: 100vh;
+  padding: 10px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 30;
+  transform: none;
+  transition: transform 0.5s ease-in-out;
+  & .side-bar__header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & i {
+      font-size: 30px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    & h5 {
+      text-transform: uppercase;
+      font-size: 20px;
+      color: $font;
+    }
+  }
+  & .side-bar__buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & .side-bar__button {
+      width: 100%;
+      height: 30px;
+      overflow-y: hidden;
+      & div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        height: 30px;
+        background-color: $bg;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 700;
+        color: $font;
+        margin-bottom: 5px;
+        transition: all 0.1s ease-in-out;
+        &:hover {
+          cursor: pointer;
+          background-color: $red;
+          transition: all 0.1s ease-in-out;
+        }
+      }
+      & .side-bar__inner {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-auto-rows: 20px;
+        margin-bottom: 10px;
+        gap: 2px;
+        & li {
+          display: flex;
+          width: 100%;
+          height: 100%;
+          justify-content: center;
+          align-items: center;
+          & a {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            color: $font;
+            transition: all 0.1s ease-in-out;
+            &:hover {
+              color: rgba($color: $font, $alpha: 0.5);
+              transition: all 0.1s ease-in-out;
+            }
+          }
+        }
+      }
+    }
+    & .side-bar__button--showing {
+      height: max-content;
+      & div {
+        background-color: $red;
+      }
+    }
+  }
+}
+
+.side-bar--hidden {
+  transform: translateX(1000px);
+  transition: transform 0.5s ease-in-out;
 }

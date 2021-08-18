@@ -1,3 +1,5 @@
+import { handleListClick, handleNavLoad } from "./sidebar";
+
 const nav = document.querySelector(".header");
 const header = document.querySelector("header");
 const intro = document.getElementById("intro");
@@ -89,6 +91,7 @@ const handleResize = () => {
       const newList = document.createElement("i");
       newList.className = "fas fa-bars header__list";
       nav.appendChild(newList);
+      handleNavLoad();
     }
     if (!nav.classList.contains("nav--S")) {
       nav.classList.add("nav--S");
