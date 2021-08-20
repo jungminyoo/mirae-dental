@@ -13,6 +13,8 @@ import noticeRouter from "./routers/noticeRouter";
 import apiRouter from "./routers/apiRouter";
 import { localsMiddleware, page404Middleware } from "./middlewares";
 import metaRouter from "./routers/metaRouter";
+import favicon from "serve-favicon";
+import path from "path";
 
 const app = express();
 const PORT = 4000;
@@ -37,6 +39,7 @@ app.use(flash());
 app.use(localsMiddleware);
 app.use("/assets", express.static("assets"));
 app.use("/uploads", express.static("uploads"));
+app.use(favicon(path.join(__dirname, "client", "favicon.ico")));
 app.use("/", rootRouter);
 app.use("/intro", introRouter);
 app.use("/treatment", treatRouter);
