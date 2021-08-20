@@ -57,8 +57,10 @@ editor.getModule("toolbar").addHandler("image", () => {
         body: formData,
       });
       const imgPath = response.headers.get("imgPath");
+      const isHeroku = response.headers.get("isHeroku");
       const range = editor.getSelection();
-      editor.insertEmbed(range.index, "image", imgPath);
+      const realPath = isHeroku ? imgPath : "/" + imgPath;
+      editor.insertEmbed(range.index, "image", realPath);
     }
   };
 });

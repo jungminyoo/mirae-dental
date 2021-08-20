@@ -291,8 +291,10 @@ export const postEditPosting = async (req, res) => {
 };
 
 export const apiImage = (req, res) => {
-  const { location } = req.file;
-  res.append("imgPath", location);
+  const { file } = req;
+  const isHeroku = process.env.NODE_ENV === "production";
+  res.append("imgPath", isHeroku ? file.location : file.path);
+  res.append("isHeroku", isHeroku);
   return res.sendStatus(200);
 };
 

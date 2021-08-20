@@ -2,6 +2,8 @@ import multer from "multer";
 import multers3 from "multer-s3";
 import aws from "aws-sdk";
 
+const isHeroku = process.env.NODE_ENV === "production";
+
 const s3 = new aws.S3({
   credentials: {
     accessKeyId: process.env.AWS_ID,
@@ -48,5 +50,5 @@ const multerUploader = multers3({
 
 export const uploadImage = multer({
   dest: "uploads/img",
-  storage: multerUploader,
+  storage: isHeroku ? multerUploader : undefined,
 });
