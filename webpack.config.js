@@ -25,8 +25,6 @@ module.exports = {
     }),
     new dotenv(),
   ],
-  mode: "development", //for development -> can changed into production
-  watch: true,
   output: {
     filename: "js/[name].js",
     path: path.resolve(__dirname, "assets"),
