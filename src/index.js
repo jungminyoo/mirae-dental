@@ -18,7 +18,7 @@ import favicon from "serve-favicon";
 import path from "path";
 
 const app = express();
-const PORT = 4000;
+const PORT = process.env.PORT;
 const logger = morgan("dev");
 
 app.set("view engine", "pug");
