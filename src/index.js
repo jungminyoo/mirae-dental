@@ -1,4 +1,5 @@
 import express from "express";
+import "regenerator-runtime";
 import "dotenv/config";
 import morgan from "morgan";
 import session from "express-session";
@@ -39,7 +40,7 @@ app.use(flash());
 app.use(localsMiddleware);
 app.use("/assets", express.static("assets"));
 app.use("/uploads", express.static("uploads"));
-app.use(favicon(path.join(__dirname, "client", "favicon.ico")));
+app.use(favicon(path.join(process.cwd(), "src", "client", "favicon.ico")));
 app.use("/", rootRouter);
 app.use("/intro", introRouter);
 app.use("/treatment", treatRouter);
