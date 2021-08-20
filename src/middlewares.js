@@ -21,7 +21,9 @@ export const page404Middleware = (req, res) => {
 export const localsMiddleware = (req, res, next) => {
   res.locals.loggedIn = Boolean(req.session.loggedIn);
   res.locals.loggedInUser = req.session.user;
-  res.locals.awsURL = "https://mirae-dental.s3.amazonaws.com";
+  res.locals.frontURL = isHeroku
+    ? "https://mirae-dental.s3.amazonaws.com"
+    : "/uploads";
   return next();
 };
 

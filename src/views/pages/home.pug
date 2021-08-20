@@ -9,30 +9,30 @@ block content
         .overflow-banner
             ul.img-banner
                 li
-                    img(src="/uploads/sources/title.jpg", alt="title")
+                    img(src=`${frontURL}/sources/title.jpg`, alt="title")
                 li
-                    img(src="/uploads/sources/lobby.jpg", alt="lobby")
+                    img(src=`${frontURL}/sources/lobby.jpg`, alt="lobby")
                 li
-                    img(src="/uploads/sources/consult.jpg", alt="consult")
+                    img(src=`${frontURL}/sources/consult.jpg`, alt="consult")
     .introduction
         hr
         h1 미래부부치과는
         p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum lacus quis purus placerat, sed condimentum metus fermentum.
         .site-buttons
             a(href="/intro/director").site-button#dentist
-                object(data="/uploads/elements/dentist.svg", type="image/svg+xml")
+                object(data=`${frontURL}/elements/dentist.svg`, type="image/svg+xml")
                 hr(align="left")
                 h2 원장님 소개
             a(href="/intro/guide").site-button#map
-                object(data="/uploads/elements/map.svg", type="image/svg+xml")
+                object(data=`${frontURL}/elements/map.svg`, type="image/svg+xml")
                 hr(align="left")
                 h2 진료안내 & 오시는길
             a(href="/treatment/prosthetic").site-button#dental
-                object(data="/uploads/elements/dental.svg", type="image/svg+xml")
+                object(data=`${frontURL}/elements/dental.svg`, type="image/svg+xml")
                 hr(align="left")
                 h2 치료안내
             a(href="/notice/1").site-button#megaphone
-                object(data="/uploads/elements/megaphone.svg", type="image/svg+xml")
+                object(data=`${frontURL}/elements/megaphone.svg`, type="image/svg+xml")
                 hr(align="left")
                 h2 게시판
     .test
