@@ -57,7 +57,7 @@ editor.getModule("toolbar").addHandler("image", () => {
         body: formData,
       });
       const imgPath = response.headers.get("imgPath");
-      const isHeroku = response.headers.get("isHeroku");
+      const isHeroku = response.headers.get("isHeroku") === "true";
       const range = editor.getSelection();
       const realPath = isHeroku ? imgPath : "/" + imgPath;
       editor.insertEmbed(range.index, "image", realPath);
