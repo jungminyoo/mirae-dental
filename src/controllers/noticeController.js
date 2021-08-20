@@ -291,8 +291,8 @@ export const postEditPosting = async (req, res) => {
 };
 
 export const apiImage = (req, res) => {
-  const { path: fileUrl } = req.file;
-  res.append("imgPath", fileUrl);
+  const { location } = req.file;
+  res.append("imgPath", location);
   return res.sendStatus(200);
 };
 

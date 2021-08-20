@@ -58,7 +58,7 @@ editor.getModule("toolbar").addHandler("image", () => {
       });
       const imgPath = response.headers.get("imgPath");
       const range = editor.getSelection();
-      editor.insertEmbed(range.index, "image", "/" + imgPath);
+      editor.insertEmbed(range.index, "image", imgPath);
     }
   };
 });
