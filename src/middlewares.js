@@ -42,7 +42,7 @@ export const publicOnlyMiddleWare = (req, res, next) => {
 
 const multerUploader = multers3({
   s3: s3,
-  bucket: "mirae-dental",
+  bucket: "mirae-dental/img",
   acl: "public-read",
 });
 
