@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Website for Mirae Dental Clinic.",
   "main": "src/index.js",
+  "engines": {
+    "node": "16.4.2"
+  },
   "scripts": {
     "start": "node build/index.js",
     "build": "npm run build:server && npm run build:assets",
