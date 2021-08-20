@@ -11,6 +11,7 @@ export const director = (req, res) => {
 };
 
 export const guide = (req, res) => {
+  res.locals.KAKAO_JS_KEY = process.env.KAKAO_JS_KEY;
   return res.render("pages/guide", { pageTitle: "진료안내" });
 };
 
