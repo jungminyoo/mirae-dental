@@ -59,6 +59,9 @@ const handleResize = () => {
     if (nav.classList.contains("nav--S")) {
       nav.classList.remove("nav--S");
     }
+    if (main.classList.contains("main--S")) {
+      main.classList.remove("main--S");
+    }
   } else if (width <= 1060 && width > 768) {
     // Add
     if (!headerContents) {
@@ -85,6 +88,9 @@ const handleResize = () => {
     if (nav.classList.contains("nav--S")) {
       nav.classList.remove("nav--S");
     }
+    if (main.classList.contains("main--S")) {
+      main.classList.remove("main--S");
+    }
   } else {
     // Add
     if (!list) {
@@ -98,6 +104,9 @@ const handleResize = () => {
     }
     if (!header.classList.contains("header--S")) {
       header.classList.add("header--S");
+    }
+    if (!main.classList.contains("main--S")) {
+      main.classList.add("main--S");
     }
     // Remove
     if (tel) {

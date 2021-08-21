@@ -133,3 +133,41 @@
   width: 100%;
   height: 200px;
 }
+
+@media screen and (max-width: $small) {
+  .introduction {
+    width: 100%;
+    & h1 {
+      font-size: 7vw;
+      margin-bottom: 1.5vw;
+    }
+    & p {
+      font-size: 2.5vw;
+      margin-bottom: 3vw;
+    }
+    & .site-buttons {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 17.5vw;
+      gap: 0;
+      & .site-button {
+        padding: 1.5vw 2vw;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        & object {
+          width: 30%;
+          height: 70%;
+          margin-bottom: 0;
+          margin-right: 3vw;
+        }
+        & hr {
+          display: none;
+        }
+        & h2 {
+          font-size: 5vw;
+          line-height: 5.1vw;
+        }
+      }
+    }
+  }
+}
