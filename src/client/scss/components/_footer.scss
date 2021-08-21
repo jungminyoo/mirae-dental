@@ -47,3 +47,45 @@ footer {
     }
   }
 }
+
+@media screen and (max-width: $small) {
+  footer {
+    height: max-content;
+    & .meta-buttons {
+      width: 100%;
+      background-color: transparent;
+      grid-template-columns: repeat(2, 1fr);
+      & a {
+        background-color: $footer_button;
+        padding: 5px 0;
+        color: rgba($color: $bg, $alpha: 0.5);
+        font-size: 11px;
+        text-align: center;
+        border-radius: 5px;
+        transition: box-shadow 0.2s ease-in-out;
+        &:hover {
+          box-shadow: 0 3px 5px black;
+          transition: box-shadow 0.2s ease-in-out;
+        }
+      }
+    }
+    & .meta-info {
+      gap: 2px;
+      & p {
+        font-size: 11px;
+      }
+    }
+    & .icon-att {
+      & > span {
+        font-size: 10px;
+        font-weight: 700;
+      }
+      & div {
+        font-size: 9px;
+        & a {
+          color: rgba($color: $bg, $alpha: 0.5);
+        }
+      }
+    }
+  }
+}
