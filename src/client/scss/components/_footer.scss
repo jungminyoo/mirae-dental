@@ -55,6 +55,7 @@ footer {
       width: 100%;
       background-color: transparent;
       grid-template-columns: repeat(2, 1fr);
+      gap: 3px;
       & a {
         background-color: $footer_button;
         padding: 5px 0;
@@ -62,10 +63,12 @@ footer {
         font-size: 11px;
         text-align: center;
         border-radius: 5px;
-        transition: box-shadow 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
         &:hover {
-          box-shadow: 0 3px 5px black;
-          transition: box-shadow 0.2s ease-in-out;
+          box-shadow: 0 3px 10px rgba($color: black, $alpha: 0.5);
+          background-color: rgba($color: $bg, $alpha: 0.5);
+          color: $footer_button;
+          transition: all 0.2s ease-in-out;
         }
       }
     }
