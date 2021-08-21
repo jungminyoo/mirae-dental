@@ -5,7 +5,7 @@ block content
         h1=pageTitle
         if errorMessage
             span.error__admin=errorMessage
-        form.admin(method="POST")
+        form.admin.admin--login(method="POST")
             .input_container
                 label(for="username") 아이디
                 input#username.input(name="username", type="text", required, placeholder="아이디")

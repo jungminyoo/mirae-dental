@@ -36,3 +36,11 @@
     }
   }
 }
+
+@media screen and (max-width: $small) {
+  .admin {
+    width: 90%;
+    height: max-content;
+    padding: 50px 30px;
+  }
+}
