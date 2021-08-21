@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 200px;
+  margin-bottom: 50px;
   & .posting_header {
     display: flex;
     justify-content: space-between;
@@ -28,7 +28,6 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-
         white-space: normal;
         line-height: 1.2;
         max-height: 2.4em;
@@ -37,7 +36,6 @@
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
-
         margin-bottom: 10px;
         font-size: 40px;
         font-weight: 700;
@@ -98,4 +96,85 @@
   max-height: max-content;
   width: 100%;
   padding: 5px;
+}
+
+@media screen and (min-width: $medium) {
+  .list_text {
+    display: none;
+  }
+}
+
+@media screen and (min-width: $small) and (max-width: $medium) {
+  .posting__page {
+    & .posting_header {
+      flex-direction: column;
+      align-items: flex-start;
+      & .posting_info {
+        margin-bottom: 15px;
+      }
+      & .posting_buttons {
+        & a {
+          width: 45px;
+          height: 30px;
+          font-size: 13px;
+        }
+        & a:first-child {
+          width: 60px;
+          & i {
+            font-size: 13px;
+            margin-right: 4px;
+          }
+          & .list_text {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $small) {
+  .posting__page {
+    width: 90%;
+    & .posting_header {
+      flex-direction: column;
+      align-items: flex-start;
+      & .posting_info {
+        margin-bottom: 7px;
+        & h1 {
+          width: 90vw;
+          margin-bottom: 5px;
+        }
+        & .posting_meta {
+          display: grid;
+          grid-template-columns: repeat(3, max-content);
+          gap: 2px;
+          & small {
+            width: max-content;
+            font-size: 11px;
+          }
+          & small:nth-child(4) {
+            display: none;
+          }
+        }
+      }
+      & .posting_buttons {
+        & a {
+          width: 45px;
+          height: 30px;
+          font-size: 13px;
+        }
+        & a:first-child {
+          width: 60px;
+          & i {
+            font-size: 13px;
+            margin-right: 4px;
+          }
+          & .list_text {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
 }

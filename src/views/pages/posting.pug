@@ -21,6 +21,7 @@ block content
             .posting_buttons
                 a.list(href=`/notice${backPage}1`)
                     i.fas.fa-bars
+                    span.list_text 목록
                 if loggedInUser
                     if String(posting.author._id) === String(loggedInUser._id)
                         a(href=`/notice/${posting._id}/edit`) 수정
