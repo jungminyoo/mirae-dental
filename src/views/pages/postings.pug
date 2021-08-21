@@ -47,7 +47,7 @@ block content
             else 
                 a.page_next(href=`/notice${searchPage}${parseInt(page) + 1}${searchQuery ? searchQuery:""}`)
                     i.fas.fa-arrow-right
-        .page_count #{page} / #{maxPage}
+        .page_count #{page} / #{maxPage === 0 ? 1 : maxPage}
         form.search(action=`/notice${searchPage}search/1`)
             select#search(name="search")
                 option(value="title") 제목
