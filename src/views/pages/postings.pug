@@ -9,7 +9,7 @@ block content
             .toUploadContainer
                 a.toUpload(href="/notice/upload") 게시글 작성 
         .postings_container
-            .postings_kinds 
+            .postings_kinds
                 .postings_number.kinds
                     span 번호
                 .postings_title.kinds
@@ -47,6 +47,7 @@ block content
             else 
                 a.page_next(href=`/notice${searchPage}${parseInt(page) + 1}${searchQuery ? searchQuery:""}`)
                     i.fas.fa-arrow-right
+        .page_count #{page} / #{maxPage}
         form.search(action=`/notice${searchPage}search/1`)
             select#search(name="search")
                 option(value="title") 제목
