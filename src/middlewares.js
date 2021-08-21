@@ -22,7 +22,7 @@ export const localsMiddleware = (req, res, next) => {
   res.locals.loggedIn = Boolean(req.session.loggedIn);
   res.locals.loggedInUser = req.session.user;
   res.locals.frontURL = isHeroku
-    ? "https://mirae-dental.s3.amazonaws.com"
+    ? "https://mirae-dental.s3.us-east-2.amazonaws.com"
     : "/uploads";
   return next();
 };
