@@ -1,0 +1,50 @@
+extends ../base
+
+block content 
+    .sitemap 
+        h1=pageTitle
+        .sitemap_grid 
+            .router
+                h3 병원소개
+                hr
+                ul.links 
+                    li.link 
+                        a(href="/") 홈
+                    li.link 
+                        a(href="/intro") 병원소개
+                    li.link 
+                        a(href="/intro/director") 원장소개
+                    li.link 
+                        a(href="/intro/guide") 진료안내
+            .router
+                h3 치료안내
+                hr
+                ul.links 
+                    li.link 
+                        a(href="/treatment/prosthetic") 심미보철
+                    li.link 
+                        a(href="/treatement/implant") 임플란트
+                    li.link 
+                        a(href="/treatment/dentures") 틀니
+                    li.link 
+                        a(href="/treatment/endodontic") 신경치료
+                    li.link 
+                        a(href="/treatment/periodental") 치주치료
+                    li.link 
+                        a(href="/treatment/cervical") 치경부마모
+            .router 
+                h3 게시판
+                hr
+                ul.links 
+                    li.link 
+                        a(href="/notice/1") 공지사항
+                    li.link 
+                        a(href="/notice/media/1") 보도자료
+                    li.link 
+                        a(href="/notice/caution/1") 치료 후 주의사항
+            .router 
+                h3 기타
+                hr
+                ul.links 
+                    li.link 
+                        a(href="/meta/sitemap") 사이트맵

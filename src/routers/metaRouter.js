@@ -1,9 +1,8 @@
 import express from "express";
-import { privacy, policy } from "../controllers/pageController";
+import { sitemap } from "../controllers/pageController";
 
 const metaRouter = express.Router();
 
-metaRouter.get("/policy", policy);
-metaRouter.get("/privacy", privacy);
+metaRouter.get("/sitemap", sitemap);
 
 export default metaRouter;

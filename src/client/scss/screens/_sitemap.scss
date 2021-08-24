@@ -1,0 +1,76 @@
+.sitemap {
+  width: 97%;
+  height: 100vh;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 130px;
+  & h1 {
+    margin: 70px 0;
+    font-size: 40px;
+    text-align: center;
+    font-weight: 700;
+    color: $font;
+  }
+  & .sitemap_grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2vw;
+    & .router {
+      width: 100%;
+      & h3 {
+        font-size: 2vw;
+        font-weight: 500;
+        color: $font;
+      }
+      & hr {
+        width: 100%;
+        height: max-content;
+        border: 1px solid rgba($color: $border, $alpha: 0.2);
+      }
+      & .links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3vw;
+        & .link {
+          & a {
+            text-decoration: none;
+            color: $font;
+            font-size: 1.3vw;
+            transition: all 0.2s ease-in-out;
+            &:hover {
+              color: rgba($color: $font, $alpha: 0.5);
+              text-decoration: underline;
+              transition: all 0.2s ease-in-out;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $small) {
+  .sitemap {
+    margin-bottom: 60px;
+    & .sitemap_grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 5vw;
+      & .router {
+        & h3 {
+          font-size: 4vw;
+        }
+        & .links {
+          gap: 0.7vw;
+          & .link {
+            & a {
+              font-size: 3vw;
+            }
+          }
+        }
+      }
+    }
+  }
+}

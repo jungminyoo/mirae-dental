@@ -51,10 +51,6 @@ export const cervical = (req, res) => {
   return res.render("pages/cervical", { pageTitle: "치경부마모" });
 };
 
-export const privacy = (req, res) => {
-  return res.render("pages/privacy", { pageTitle: "개인정보처리방침" });
-};
-
-export const policy = (req, res) => {
-  return res.render("pages/policy", { pageTitle: "이용약관" });
+export const sitemap = (req, res) => {
+  return res.render("pages/sitemap", { pageTitle: "사이트맵" });
 };
