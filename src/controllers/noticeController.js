@@ -95,9 +95,9 @@ export const postings = async (req, res) => {
   let whichBoard;
   if (req.originalUrl.includes("search")) {
     searchQuery = `?search=${search}&value=${value}`;
-    if (req.originalUrl.includes("cases")) {
-      whichBoard = "치료 전후 사례";
-      searchPage = "/cases/search/";
+    if (req.originalUrl.includes("media")) {
+      whichBoard = "보도자료";
+      searchPage = "/media/search/";
     } else if (req.originalUrl.includes("caution")) {
       whichBoard = "치료 후 주의사항";
       searchPage = "/caution/search/";
@@ -106,9 +106,9 @@ export const postings = async (req, res) => {
       searchPage = "/search/";
     }
   } else {
-    if (req.originalUrl.includes("cases")) {
-      whichBoard = "치료 전후 사례";
-      searchPage = "/cases/";
+    if (req.originalUrl.includes("media")) {
+      whichBoard = "보도자료";
+      searchPage = "/media/";
     } else if (req.originalUrl.includes("caution")) {
       whichBoard = "치료 후 주의사항";
       searchPage = "/caution/";
@@ -163,8 +163,8 @@ export const posting = async (req, res) => {
   const { id } = req.params;
   const posting = await Posting.findById(id).populate("author");
   let backPage;
-  if (posting.whichBoard === "치료 전후 사례") {
-    backPage = "/cases/";
+  if (posting.whichBoard === "보도자료") {
+    backPage = "/media/";
   } else if (posting.whichBoard === "치료 후 주의사항") {
     backPage = "/caution/";
   } else {
@@ -246,7 +246,7 @@ export const getEditPosting = async (req, res) => {
   const posting = await Posting.findById(id);
   const isImportant = posting.isImportant === "true";
   const isNotice = posting.whichBoard === "공지사항" ? true : false;
-  const isCase = posting.whichBoard === "치료 전후 사례" ? true : false;
+  const isMedia = posting.whichBoard === "보도자료" ? true : false;
   const isCaution = posting.whichBoard === "치료 후 주의사항" ? true : false;
   if (String(posting.author) !== String(_id)) {
     req.flash("error", "이 게시물의 작성자가 아닙니다.");
@@ -257,7 +257,7 @@ export const getEditPosting = async (req, res) => {
     posting,
     isImportant,
     isNotice,
-    isCase,
+    isMedia,
     isCaution,
   });
 };

@@ -14,8 +14,8 @@ const noticeRouter = express.Router();
 
 noticeRouter.get("/:page(\\d+)", postings);
 noticeRouter.get("/search/:page(\\d+)", postings);
-noticeRouter.get("/cases/:page(\\d+)", postings);
-noticeRouter.get("/cases/search/:page(\\d+)", postings);
+noticeRouter.get("/media/:page(\\d+)", postings);
+noticeRouter.get("/media/search/:page(\\d+)", postings);
 noticeRouter.get("/caution/:page(\\d+)", postings);
 noticeRouter.get("/caution/search/:page(\\d+)", postings);
 noticeRouter
