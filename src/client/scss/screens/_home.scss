@@ -1,7 +1,7 @@
 .carousel {
   width: 100vw;
   height: 42.9vw;
-  margin-bottom: 5vw;
+  margin-bottom: 3vw;
   position: relative;
   overflow: hidden;
   & button {
@@ -54,11 +54,12 @@
   }
 }
 
-.introduction {
+.home {
   width: 97%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 10vw;
   & hr {
     width: 40px;
     height: 1px;
@@ -84,6 +85,7 @@
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 17.5vw;
     gap: 3%;
+    margin-bottom: 5vw;
     & .site-button {
       width: 100%;
       height: 100%;
@@ -127,15 +129,63 @@
       background-color: #a5d5f7;
     }
   }
-}
-
-.test {
-  width: 100%;
-  height: 200px;
+  & .notice-title {
+    margin-bottom: 3vw;
+  }
+  & .home-notice {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 7vw;
+    gap: 1vw;
+    & .impPosting {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      box-shadow: 0px 2px 5px rgba($color: $font, $alpha: 0.1);
+      transition: all 0.1s ease-in-out;
+      text-decoration: none;
+      color: $font;
+      padding: 1vw;
+      display: grid;
+      grid-template-columns: 1fr 4fr;
+      grid-template-rows: 4fr 1fr 1fr;
+      gap: 0.1vw;
+      & i {
+        grid-row: span 3;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2vw;
+      }
+      & h4 {
+        font-size: 2.3vw;
+        font-weight: 700;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      & small {
+        color: rgba($color: $font, $alpha: 0.5);
+        font-size: 1vw;
+      }
+      &:hover {
+        background-color: $font;
+        color: $bg;
+        transition: all 0.1s ease-in-out;
+        & small {
+          color: rgba($color: $bg, $alpha: 0.5);
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: $small) {
-  .introduction {
+  .home {
     width: 100%;
     & h1 {
       font-size: 7vw;
@@ -166,6 +216,19 @@
         & h2 {
           font-size: 5vw;
           line-height: 5.1vw;
+        }
+      }
+    }
+    & .home-notice {
+      grid-auto-rows: 13vw;
+      & .impPosting {
+        padding-top: 1.5vw;
+        padding-bottom: 1.5vw;
+        & i {
+          font-size: 3.5vw;
+        }
+        & h4 {
+          font-size: 4.5vw;
         }
       }
     }

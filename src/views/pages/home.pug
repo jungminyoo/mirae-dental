@@ -1,4 +1,5 @@
 extends ../base
+include ../mixins/homeImportantPostingMixin
 
 block content
     .carousel
@@ -11,13 +12,14 @@ block content
                 li
                     img(src=`${frontURL}/sources/title.jpg`, alt="title")
                 li
-                    img(src=`${frontURL}/sources/lobby-title.jpg`, alt="lobby")
+                    img(src=`${frontURL}/sources/home.jpg`, alt="home")
                 li
-                    img(src=`${frontURL}/sources/consult-title.jpg`, alt="consult")
-    .introduction
+                    img(src=`${frontURL}/sources/lobby-title.jpg`, alt="lobby")
+
+    .home
         hr
         h1 미래부부치과는
-        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum lacus quis purus placerat, sed condimentum metus fermentum.
+        p 언제나 편안하고 정성을 다하는 치료와 아름다운 미소를 위해 최선을 다하겠습니다.
         .site-buttons
             a(href="/intro/director").site-button#dentist
                 object(data=`${frontURL}/elements/dentist.svg`, type="image/svg+xml")
@@ -35,7 +37,12 @@ block content
                 object(data=`${frontURL}/elements/megaphone.svg`, type="image/svg+xml")
                 hr(align="left")
                 h2 게시판
-    .test
+                
+        hr
+        h1.notice-title 공지사항
+        .home-notice
+            each importantPosting in importantPostings 
+                +homeImportantPostingMixin(importantPosting)
 
 block scripts
     script(src="/assets/js/banner.js")

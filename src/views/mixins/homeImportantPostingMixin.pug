@@ -1,0 +1,6 @@
+mixin homeImportantPostingMixin(importantPosting)
+    a.impPosting(href=`/notice/${importantPosting._id}`)
+        i.fas.fa-bullhorn
+        h4=importantPosting.title
+        small 작성일 #{importantPosting.createdAt.getFullYear()}.#{String(importantPosting.createdAt.getMonth() + 1).padStart(2, "0")}.#{String(importantPosting.createdAt.getDate()).padStart(2, "0")}
+        small 작성자 #{importantPosting.author.name}

@@ -1,5 +1,17 @@
-export const home = (req, res) => {
-  return res.render("pages/home", { pageTitle: "홈" });
+import { IMP_POSTING_MAX } from "./noticeController";
+import User from "../models/User";
+import Posting from "../models/Posting";
+import { async } from "regenerator-runtime";
+
+export const home = async (req, res) => {
+  let importantPostings = await Posting.find({
+    whichBoard: "공지사항",
+    isImportant: true,
+  })
+    .populate("author")
+    .sort({ createdAt: "desc" });
+  importantPostings = importantPostings.slice(0, IMP_POSTING_MAX);
+  return res.render("pages/home", { pageTitle: "홈", importantPostings });
 };
 
 export const intro = (req, res) => {
