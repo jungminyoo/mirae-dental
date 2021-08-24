@@ -4,7 +4,7 @@ import { async } from "regenerator-runtime";
 import { QuillDeltaToHtmlConverter } from "quill-delta-to-html";
 
 const POSTING_MAX = 10;
-export const IMP_POSTING_MAX = 5;
+export const IMP_POSTING_MAX = 4;
 
 const processPage = (page, importantPostings, postings) => {
   importantPostings = importantPostings.slice(0, IMP_POSTING_MAX);
