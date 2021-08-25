@@ -18,13 +18,14 @@
       align-items: flex-start;
       justify-content: flex-end;
       margin-bottom: 3px;
+      width: 90%;
       & small {
         color: $border;
         font-size: 12px;
       }
       & h1 {
         display: inline-block;
-        width: 500px;
+        width: 100%;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
