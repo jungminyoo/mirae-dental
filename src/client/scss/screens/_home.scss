@@ -132,16 +132,16 @@
   & .notice-title {
     margin-bottom: 3vw;
   }
+  & h2 {
+    font-size: 1.5vw;
+    font-weight: 500;
+  }
   & .home-notice {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-auto-rows: 7vw;
     gap: 1vw;
-    & h2 {
-      font-size: 20px;
-      font-weight: 500;
-    }
     & .impPosting {
       width: 100%;
       height: 100%;
