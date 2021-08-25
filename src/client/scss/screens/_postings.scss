@@ -137,8 +137,9 @@
 }
 
 .page_count {
-  width: 85px;
-  height: 40px;
+  width: max-content;
+  height: max-content;
+  padding: 15px 25px;
   display: flex;
   justify-content: center;
   align-items: center;
