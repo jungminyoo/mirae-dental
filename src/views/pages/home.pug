@@ -40,9 +40,12 @@ block content
                 
         hr
         h1.notice-title 공지사항
-        .home-notice
-            each importantPosting in importantPostings 
-                +homeImportantPostingMixin(importantPosting)
+        if importantPostings = []
+            h2 게시물이 없습니다.
+        else
+            .home-notice
+                each importantPosting in importantPostings 
+                    +homeImportantPostingMixin(importantPosting)
 
 block scripts
     script(src="/assets/js/banner.js")
