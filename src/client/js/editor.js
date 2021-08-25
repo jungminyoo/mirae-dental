@@ -79,9 +79,9 @@ const handleUpload = async (event) => {
     alert("제목을 작성해주세요.");
     return titleInput.focus({ preventScroll: false });
   }
-  const { id } = submit.dataset;
+  let { id } = submit.dataset;
   const fetchingURL = id ? `/notice/${id}/edit` : "/notice/upload";
-  await fetch(fetchingURL, {
+  const response = await fetch(fetchingURL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -93,16 +93,19 @@ const handleUpload = async (event) => {
       content: uploadData,
     }),
   });
+  if (response.headers.get("id")) {
+    id = response.headers.get("id");
+  }
   let backPage;
-  if (whichBoard === "치료 전후 사례") {
-    backPage = "/cases/";
+  if (whichBoard === "보도자료") {
+    backPage = "/media/";
   } else if (whichBoard === "치료 후 주의사항") {
     backPage = "/caution/";
   } else {
     backPage = "/";
   }
   if (id) {
-    window.location.replace(`/notice${backPage}${id}`);
+    window.location.replace(`/notice/${id}`);
   } else {
     window.location.replace(`/notice${backPage}1`);
   }

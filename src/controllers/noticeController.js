@@ -229,7 +229,8 @@ export const postUploadPosting = async (req, res) => {
     const user = await User.findById(_id);
     user.postings.push(newPosting._id);
     await user.save();
-    return res.redirect("/notice/1");
+    res.append("id", newPosting._id);
+    return res.sendStatus(200);
   } catch (error) {
     return res.status(400).render("pages/upload", {
       pageTitle: "게시글 작성",
@@ -281,7 +282,7 @@ export const postEditPosting = async (req, res) => {
       isImportant,
       lastEdit: Date.now(),
     });
-    return res.redirect(`/notice/${id}`);
+    return res.sendStatus(200);
   } catch (error) {
     return res.status(400).render("pages/editPosting", {
       pageTitle,
